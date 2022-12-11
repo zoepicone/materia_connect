@@ -1,0 +1,8 @@
+<h1>Edit Mod</h1>
+
+<%= render "form", :mod => @mod %>
+
+<%= link_to "Delete Mod", mod_path(@mod), data: {
+  turbo_method: :delete,
+  turbo_confirm: "Are you sure you want to delete this mod?"
+} %>

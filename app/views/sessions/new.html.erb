@@ -1,0 +1,5 @@
+<%= form_tag('/auth/google_oauth2', method: 'get', data: {turbo: false}) do %>
+  <button type='submit'>Connect with Google</button>
+<% end %>
+
+<p><a href="<%= root_path %>">Back</a></p>

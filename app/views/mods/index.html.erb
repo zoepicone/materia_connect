@@ -1,0 +1,13 @@
+<h1>Mods</h1>
+
+<ul>
+  <% @mods.each do |mod| %>
+    <li>
+      <%= link_to mod.title, mod %>
+    </li>
+  <% end %>
+</ul>
+
+<p><%= link_to "Publish New Mod", new_mod_path if (session[:user_auth_id]) %></p>
+
+<p><%= link_to "Back", root_path %></p>

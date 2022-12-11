@@ -1,0 +1,15 @@
+<h1><%= @mod.title %></h1>
+
+<p>Tags: <%= @mod.tags.split.join(' ') %></p>
+
+<p><a href="<%= @mod.download_url %>">Download</a></p>
+
+<p>Published: <%= localize(@mod.created_at, :format => :long) %></p>
+
+<p>Last Updated: <%= localize(@mod.updated_at, :format => :long) %></p>
+
+<p><%= @mod.description %></p>
+
+<%= link_to "Edit Mod", edit_mod_path(@mod) %>
+
+<p><a href="<%= mods_path %>">Back</a></p>
