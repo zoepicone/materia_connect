@@ -22,12 +22,8 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
-#  <<: *default
-#  database: materia_connect_development
-
-  database: materia_connect_production
-  username: materia_connect
-  password: <%= ENV["materia_connect_DATABASE_PASSWORD"] %>
+  <<: *default
+  database: materia_connect_development
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
