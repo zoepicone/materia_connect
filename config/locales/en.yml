@@ -30,4 +30,5 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  product_name: "Materia Connect"
   hello: "Hello world"

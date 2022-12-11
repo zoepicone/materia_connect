@@ -1,3 +1,5 @@
+<%= render 'dashboard/header' %>
+
 <h1>Mods</h1>
 
 <ul>
@@ -8,6 +10,12 @@
   <% end %>
 </ul>
 
-<p><%= link_to "Publish New Mod", new_mod_path if (session[:user_auth_id]) %></p>
+<p>
+  <% if (session[:user_auth_id]) %>
+    <bx-link href="<%= new_mod_path %>">Publish New Mod</bx-link>
+  <% end %>
+</p>
 
-<p><%= link_to "Back", root_path %></p>
+<p>
+  <bx-link href="<%= root_path %>">Back</bx-link>
+</p>

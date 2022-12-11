@@ -1,5 +1,9 @@
+<%= render 'dashboard/header' %>
+
+<h1>Sign In</h1>
+
 <%= form_tag('/auth/google_oauth2', method: 'get', data: {turbo: false}) do %>
-  <button type='submit'>Connect with Google</button>
+  <bx-btn type='submit'>Connect with Google</bx-btn>
 <% end %>
 
-<p><a href="<%= root_path %>">Back</a></p>
+<p><bx-link href="<%= root_path %>">Back</bx-link></p>
