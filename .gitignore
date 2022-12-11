@@ -68,3 +68,7 @@ yarn-debug.log*
 /storage/*
 !/storage/.keep
 /public/uploads
+
+# Ignore database files
+materia_connect_development
+materia_connect_test
