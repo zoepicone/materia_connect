@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
     if @authorisation
       render text: "Welcome back #{@authorisation.user.name}! You have already signed up."
     else
+      puts(auth_hash['user_info'])
       user = User.new(name: auth_hash['user_info']['name'], email: auth_hash['user_info']['email'])
       user.authorisations.build(provider: auth_hash['provider'], uid: auth_hash['uid'])
       user.save
