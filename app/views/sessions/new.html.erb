@@ -2,8 +2,6 @@
 
 <h1>Sign In</h1>
 
-<%= form_tag('/auth/google_oauth2', method: 'get', data: {turbo: false}) do %>
-  <bx-btn type='submit'>Connect with Google</bx-btn>
-<% end %>
+<bx-btn type='submit' href='/auth/google_oauth2'>Connect with Google</bx-btn>
 
 <p><bx-link href="<%= root_path %>">Back</bx-link></p>
