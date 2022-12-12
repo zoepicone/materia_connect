@@ -8,7 +8,7 @@ class User < ApplicationRecord
 
     user.name ||= auth_data['info']['name']
     user.email ||= auth_data['info']['email']
-    user.username ||= user.name.downcase.parameterize(separator: '_')
+    user.username ||= "#{user.name}_#{auth_data['uid']}".downcase.parameterize(separator: '_')
 
     user.save!
     user
