@@ -2,7 +2,7 @@
 
 <p>Tags: <%= @mod.tags.split.join(' ') %></p>
 
-<p><a href="<%= @mod.download_url %>">Download</a></p>
+<p><bx-link href="<%= @mod.download_url %>">Download</bx-link></p>
 
 <p>Published: <%= localize(@mod.created_at, :format => :long) %></p>
 
@@ -11,7 +11,7 @@
 <p><%= @mod.description %></p>
 
 <% if (current_user.present? && current_user.id == @mod.user_id) %>
-  <%= link_to "Edit Mod", edit_mod_path(@mod) %>
+  <bx-link href="<%= edit_mod_path(@mod) %>">Edit Mod</bx-link>
 <% end %>
 
-<p><a href="<%= mods_path %>">Back</a></p>
+<p><bx-link href="<%= mods_path %>">Back</bx-link></p>

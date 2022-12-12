@@ -1,15 +1,15 @@
 <h1>Mods</h1>
 
-<ul>
+<bx-unordered-list>
   <% @mods.each do |mod| %>
-    <li>
-      <%= link_to mod.title, mod %>
-    </li>
+    <bx-list-item>
+      <bx-link href="<%= mod_path(mod) %>"><%= mod.title %></bx-link>
+    </bx-list-item>
   <% end %>
-</ul>
+</bx-unordered-list>
 
 <p>
-  <% if (session[:user_id]) %>
+  <% if session[:user_id] %>
     <bx-link href="<%= new_mod_path %>">Publish New Mod</bx-link>
   <% end %>
 </p>
