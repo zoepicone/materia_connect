@@ -1,42 +1,79 @@
-<div>
-  <%= link_to "Back", :back %>
-</div>
+<form>
+  <bx-form-item>
+    <bx-input name="mod[title]" value="<%= @mod.title %>">
+      <span slot="label-text">Title</span>
+      <span slot="helper-text">Must be at least 5 characters long.</span>
+      <span slot="validity-message">Something isn't right!</span>
+    </bx-input>
+  </bx-form-item>
 
-<%= form_with model: mod do |form| %>
+  <bx-form-item>
+    <bx-textarea name="mod[description]" value="<%= @mod.description %>" rows="4">
+      <span slot="label-text">Description</span>
+      <span slot="helper-text">Must be at least 5 characters long.</span>
+      <span slot="validity-message">Something isn't right!</span>
+    </bx-textarea>
+  </bx-form-item>
 
-  <div>
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-    <% @mod.errors.full_messages_for(:title).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
+  <bx-form-item>
+    <bx-input name="mod[tags]" value="<%= @mod.tags %>">
+      <span slot="label-text">Tags</span>
+      <span slot="helper-text">Separate tags by commas, eg; "bibo+, female, clothing".</span>
+      <span slot="validity-message">Something isn't right!</span>
+    </bx-input>
+  </bx-form-item>
 
-  <div>
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-    <% @mod.errors.full_messages_for(:description).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
+  <bx-form-item>
+    <bx-input name="mod[download-url]" value="<%= @mod.download_url %>">
+      <span slot="label-text">Download URL</span>
+      <span slot="helper-text">Must be a valid URL.</span>
+      <span slot="validity-message">Something isn't right!</span>
+    </bx-input>
+  </bx-form-item>
 
-  <div>
-    <%= form.label :tags %>
-    <%= form.text_field :tags %>
-    <% @mod.errors.full_messages_for(:tags).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
+  <bx-form-item>
+    <div>
+      <bx-btn type="submit" id="mod-submit">Publish</bx-btn>
+      <bx-btn type="back" kind="ghost" href="javascript:history.back()">Back</bx-btn>
+    </div>
+  </bx-form-item>
+</form>
 
-  <div>
-    <%= form.label :download_url %>
-    <%= form.text_field :download_url %>
-    <% @mod.errors.full_messages_for(:download_url).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
+<%#= form_with model: mod do |form| %>
 
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+<!--  <div>-->
+    <%#= form.label :title %>
+    <%#= form.text_field :title %>
+    <%# @mod.errors.full_messages_for(:title).each do |message| %>
+<!--      <div><%#= message %></div>-->
+    <%# end %>
+<!--  </div>-->
+
+<!--  <div>-->
+    <%#= form.label :description %>
+    <%#= form.text_area :description %>
+    <%# @mod.errors.full_messages_for(:description).each do |message| %>
+<!--      <div><%#= message %></div>-->
+    <%# end %>
+<!--  </div>-->
+
+<!--  <div>-->
+    <%#= form.label :tags %>
+    <%#= form.text_field :tags %>
+    <%# @mod.errors.full_messages_for(:tags).each do |message| %>
+<!--      <div><%#= message %></div>-->
+    <%# end %>
+<!--  </div>-->
+
+<!--  <div>-->
+    <%#= form.label :download_url %>
+    <%#= form.text_field :download_url %>
+    <%# @mod.errors.full_messages_for(:download_url).each do |message| %>
+<!--      <div><%#= message %></div>-->
+    <%# end %>
+<!--  </div>-->
+
+<!--  <div>-->
+    <%#= form.submit %>
+<!--  </div>-->
+<%# end %>
