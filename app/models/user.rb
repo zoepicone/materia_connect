@@ -1,11 +1,17 @@
 class User < ApplicationRecord
-  has_many :authorisations
   validates :name, :email, presence: true
-  
-  def add_provider(auth_hash)
-    # Check if the provider already exists, so we don't add it twice 
-    unless authorisations.find_by_provider_and_uid(auth_hash['provider'], auth_hash['uid']) 
-      Authorisation.create user: self, provider: auth_hash['provider'], uid: auth_hash['uid']
-    end
+
+  def self.find_or_create_by_auth(auth_data)
+    # TODO: Check if the provider already exists, so we don't add it twice
+    puts(auth_data)
+    user = User.find_or_create_by(provider: auth_data['provider'], uid: auth_data['uid'])
+
+    user.name ||= auth_data['info']['name']
+    user.email ||= auth_data['info']['email']
+    user.username ||= user.name.downcase.parameterize(separator: '_')
+
+    user.save!
+    user
   end
 end
+

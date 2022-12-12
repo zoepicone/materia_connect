@@ -2,6 +2,12 @@
   <bx-header-name href="<%= root_path %>"><%= t("product_name") %></bx-header-name>
   <bx-header-nav menu-bar-label="<%= t("product_name") %>">
     <bx-header-nav-item href="<%= mods_path %>">View Mods</bx-header-nav-item>
-    <bx-header-nav-item href="<%= login_path %>">Sign In</bx-header-nav-item>
+  </bx-header-nav>
+  <bx-header-nav menu-bar-label="Account">
+    <% if current_user %>
+      <bx-header-nav-item href="<%= logout_path %>">Sign Out</bx-header-nav-item>
+    <% else %>
+      <bx-header-nav-item href="<%= login_path %>">Sign In</bx-header-nav-item>
+    <% end %>
   </bx-header-nav>
 </bx-header>

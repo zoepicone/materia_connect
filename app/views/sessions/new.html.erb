@@ -1,7 +1,9 @@
-<%= render 'dashboard/header' %>
-
 <h1>Sign In</h1>
 
 <bx-btn type='submit' href='/auth/google_oauth2'>Connect with Google</bx-btn>
+
+<% if Rails.env.development? %>
+  <bx-btn type='submit' kind='danger' method='post' href='/auth/developer'>Connect as Developer</bx-btn>
+<% end %>
 
 <p><bx-link href="<%= root_path %>">Back</bx-link></p>

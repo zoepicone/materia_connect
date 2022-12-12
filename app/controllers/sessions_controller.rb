@@ -1,30 +1,22 @@
 class SessionsController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: :create
+
   def new
     render :new
   end
 
   def create
-    auth_hash = request.env['omniauth.auth']
-
-    @authorisation = Authorisation.find_by_provider_and_uid(auth_hash['provider'], auth_hash['uid'])
-    if @authorisation
-      render text: "Welcome back #{@authorisation.user.name}! You have already signed up."
-    else
-      user = User.new(name: auth_hash['name'], email: auth_hash['email'])
-      user.authorisations.build(provider: auth_hash['provider'], uid: auth_hash['uid'])
-      user.save
-
-      render text: "Hi #{user.name}! You've signed up."
-    end
-
+    @user = User.find_or_create_by_auth(request.env["omniauth.auth"])
+    session[:user_id] = @user.id
+    redirect_to mods_path, notice: "Signed in as #{@user.name}"
   end
 
   def failure
-    render text: "Sorry, but you didn't allow access to our app!"
+    redirect_to login_path, error: 'Access not given.'
   end
 
   def destroy
     session[:user_id] = nil
-    render text: "You've logged out!"
+    redirect_to root_path, notice: 'Sign out successful.'
   end
 end

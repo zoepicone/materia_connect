@@ -27,7 +27,5 @@ module MateriaConnect
         end
       end
     end
-
-    config.logger = Logger.new(STDOUT)
   end
 end
