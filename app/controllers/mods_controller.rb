@@ -1,6 +1,6 @@
 class ModsController < ApplicationController
   def index
-    @pagy, @mods = pagy_countless(Mod.order(created_at: :desc), items: 10)
+    @pagy, @mods = pagy_countless(Mod.order(created_at: :desc), items: 24)
 
     respond_to do |format|
       format.html # GET
