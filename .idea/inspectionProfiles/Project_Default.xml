@@ -4,7 +4,7 @@
     <inspection_tool class="HtmlUnknownTag" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="myValues">
         <value>
-          <list size="14">
+          <list size="27">
             <item index="0" class="java.lang.String" itemvalue="nobr" />
             <item index="1" class="java.lang.String" itemvalue="noembed" />
             <item index="2" class="java.lang.String" itemvalue="comment" />
@@ -19,6 +19,19 @@
             <item index="11" class="java.lang.String" itemvalue="bx-header-name" />
             <item index="12" class="java.lang.String" itemvalue="bx-form-item" />
             <item index="13" class="java.lang.String" itemvalue="bx-unordered-list" />
+            <item index="14" class="java.lang.String" itemvalue="bx-clickable-tile" />
+            <item index="15" class="java.lang.String" itemvalue="bx-file-uploader" />
+            <item index="16" class="java.lang.String" itemvalue="bx-file-drop-container" />
+            <item index="17" class="java.lang.String" itemvalue="bx-input" />
+            <item index="18" class="java.lang.String" itemvalue="bx-textarea" />
+            <item index="19" class="java.lang.String" itemvalue="bx-modal" />
+            <item index="20" class="java.lang.String" itemvalue="bx-modal-header" />
+            <item index="21" class="java.lang.String" itemvalue="bx-modal-heading" />
+            <item index="22" class="java.lang.String" itemvalue="bx-modal-close-button" />
+            <item index="23" class="java.lang.String" itemvalue="bx-modal-body" />
+            <item index="24" class="java.lang.String" itemvalue="bx-modal-footer" />
+            <item index="25" class="java.lang.String" itemvalue="bx-modal-footer-button" />
+            <item index="26" class="java.lang.String" itemvalue="bx-tag" />
           </list>
         </value>
       </option>

@@ -1,8 +1,19 @@
 <h1><%= @mod.title %></h1>
 
-<p>Tags: <%= @mod.tags.split.join(' ') %></p>
+<p>
+  <bx-btn href="<%= @mod.download_url %>">Download</bx-btn>
+  <% if (current_user.present? && current_user.id == @mod.user_id) %>
+    <bx-btn href="<%= edit_mod_path(@mod) %>" kind="secondary">Edit Mod</bx-btn>
+  <% end %>
+</p>
 
-<p><bx-link href="<%= @mod.download_url %>">Download</bx-link></p>
+<p>Tags:
+  <% @mod.tags.each do |tag| %>
+    <bx-tag><a href="<%= mod_tag_path(tag) %>"><%= tag %></a></bx-tag>
+  <% end %>
+</p>
+
+<p>Author: <%= User.find(@mod.user_id).username %></p>
 
 <p>Published: <%= localize(@mod.created_at, :format => :long) %></p>
 
@@ -10,8 +21,6 @@
 
 <p><%= @mod.description %></p>
 
-<% if (current_user.present? && current_user.id == @mod.user_id) %>
-  <bx-link href="<%= edit_mod_path(@mod) %>">Edit Mod</bx-link>
-<% end %>
 
-<p><bx-link href="<%= mods_path %>">Back</bx-link></p>
+
+<p><bx-link href="javascript:history.back()">Back</bx-link></p>

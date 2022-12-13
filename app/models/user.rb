@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   validates :name, :email, presence: true
+  validates :uid, uniqueness: { scope: :provider }
+  validates :username, presence: true, uniqueness: true
 
   def self.find_or_create_by_auth(auth_data)
     # TODO: Check if the provider already exists, so we don't add it twice

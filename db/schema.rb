@@ -17,7 +17,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_11_230501) do
   create_table "mods", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.string "tags"
+    t.string "tags", default: [], array: true
     t.string "download_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

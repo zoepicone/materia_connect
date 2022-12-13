@@ -3,7 +3,7 @@ class CreateMods < ActiveRecord::Migration[7.0]
     create_table :mods do |t|
       t.string :title
       t.text :description
-      t.string :tags
+      t.string :tags, array: true, default: []
       t.string :download_url
 
       t.timestamps

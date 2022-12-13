@@ -1,4 +1,6 @@
-<form>
+<form action="mods" method="post">
+  <input type="hidden" name="mod[user_id]" value="<%= current_user.id %>" />
+
   <bx-form-item>
     <bx-input name="mod[title]" value="<%= @mod.title %>">
       <span slot="label-text">Title</span>
@@ -7,16 +9,30 @@
     </bx-input>
   </bx-form-item>
 
-  <bx-form-item>
-    <bx-textarea name="mod[description]" value="<%= @mod.description %>" rows="4">
-      <span slot="label-text">Description</span>
-      <span slot="helper-text">Must be at least 5 characters long.</span>
-      <span slot="validity-message">Something isn't right!</span>
-    </bx-textarea>
-  </bx-form-item>
+  <div class="flex-container" id="in-form">
+    <div>
+      <bx-form-item>
+        <bx-textarea name="mod[description]" value="<%= @mod.description %>" rows="4">
+          <span slot="label-text">Description</span>
+          <span slot="helper-text">Must be at least 5 characters long.</span>
+          <span slot="validity-message">Something isn't right!</span>
+        </bx-textarea>
+      </bx-form-item>
+    </div>
+
+    <div>
+      <bx-form-item>
+        <bx-file-uploader helper-text="Only .jpg and .png files. 500kb max file size." label-text="Mod Image">
+          <bx-file-drop-container accept="image/jpeg, image/png" size="500000" value="<%= @mod.image %>">
+            Drag and drop your images here or click to upload.
+          </bx-file-drop-container>
+        </bx-file-uploader>
+      </bx-form-item>
+    </div>
+  </div>
 
   <bx-form-item>
-    <bx-input name="mod[tags]" value="<%= @mod.tags %>">
+    <bx-input name="mod[tags]" value="<%= @mod.tags.join(', ') %>">
       <span slot="label-text">Tags</span>
       <span slot="helper-text">Separate tags by commas, eg; "bibo+, female, clothing".</span>
       <span slot="validity-message">Something isn't right!</span>
@@ -24,7 +40,7 @@
   </bx-form-item>
 
   <bx-form-item>
-    <bx-input name="mod[download-url]" value="<%= @mod.download_url %>">
+    <bx-input name="mod[download-url]" value="<%= @mod.download_url %>" type="url" pattern="https?://.+">
       <span slot="label-text">Download URL</span>
       <span slot="helper-text">Must be a valid URL.</span>
       <span slot="validity-message">Something isn't right!</span>
@@ -33,11 +49,22 @@
 
   <bx-form-item>
     <div>
-      <bx-btn type="submit" id="mod-submit">Publish</bx-btn>
+      <bx-btn type="submit" kind="primary">Publish</bx-btn>
+      <% if edit == true %>
+        <bx-btn type="destroy" kind="danger" id="delete-mod" data-confirm="Are you sure?">Delete</bx-btn>
+      <% end %>
       <bx-btn type="back" kind="ghost" href="javascript:history.back()">Back</bx-btn>
     </div>
   </bx-form-item>
 </form>
+
+<%= render "confirm_modal" if edit == true %>
+
+<script type="text/javascript">
+  document.getElementById('delete-mod').addEventListener('click', () => {
+    document.getElementById('confirm-modal').open = true;
+  });
+</script>
 
 <%#= form_with model: mod do |form| %>
 

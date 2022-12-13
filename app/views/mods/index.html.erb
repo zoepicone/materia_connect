@@ -1,19 +1,33 @@
-<h1>Mods</h1>
+<div class="flex-container">
+  <div class="flex-item">
+    <h1>
+      <% if @tag.present? %>
+        Mods tagged with "<%= @tag %>"
+      <% else %>
+        Mods
+      <% end %>
+    </h1>
+  </div>
 
-<bx-unordered-list>
-  <% @mods.each do |mod| %>
-    <bx-list-item>
-      <bx-link href="<%= mod_path(mod) %>"><%= mod.title %></bx-link>
-    </bx-list-item>
-  <% end %>
-</bx-unordered-list>
+  <div class="flex-item">
+    <p>
+      <% if session[:user_id] %>
+        <bx-btn href="<%= new_mod_path %>">Publish New Mod</bx-btn>
+      <% end %>
+    </p>
+  </div>
+</div>
 
-<p>
-  <% if session[:user_id] %>
-    <bx-link href="<%= new_mod_path %>">Publish New Mod</bx-link>
-  <% end %>
-</p>
+<% @mods.each do |mod| %>
+  <bx-clickable-tile href="<%= mod_path(mod) %>">
+    <%= image_tag("placeholder.png", height: '64') %>
+    <h3><%= mod.title %></h3>
+  </bx-clickable-tile>
+<% end %>
+</div>
 
-<p>
-  <bx-link href="<%= root_path %>">Back</bx-link>
-</p>
+<% if @tag.present? %>
+  <p>
+    <bx-link href="javascript:history.back()">Back</bx-link>
+  </p>
+<% end %>

@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   resources :mods
 
+  get 'mods/tag/:tag', to: 'mods#with_tag', as: :mod_tag
+
   get '/login', to: 'sessions#new', as: :login
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
   match '/auth/failure', to: 'sessions#failure', via: [:get, :post]

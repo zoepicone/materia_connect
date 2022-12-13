@@ -1,0 +1,17 @@
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+}
+
+bx-form-item {
+  margin-bottom: 24px;
+  max-width: 960px;
+}
+
+#in-form {
+  max-width: 960px;
+}

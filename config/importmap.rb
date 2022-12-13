@@ -23,3 +23,4 @@ pin "@carbon/web-components/dist/tag.min.js", to: "https://cdn.jsdelivr.net/npm/
 pin "@carbon/web-components/dist/textarea.min.js", to: "https://cdn.jsdelivr.net/npm/@carbon/web-components@1.22.0/dist/textarea.min.js"
 pin "@carbon/web-components/dist/notification.min.js", to: "https://cdn.jsdelivr.net/npm/@carbon/web-components@1.22.0/dist/notification.min.js"
 pin "@carbon/web-components/dist/list.min.js", to: "https://cdn.jsdelivr.net/npm/@carbon/web-components@1.22.0/dist/list.min.js"
+pin "@carbon/web-components/dist/tile.min.js", to: "https://cdn.jsdelivr.net/npm/@carbon/web-components@1.22.0/dist/tile.min.js"

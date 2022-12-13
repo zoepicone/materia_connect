@@ -42,8 +42,18 @@ class ModsController < ApplicationController
     redirect_to mods_path, status: :see_other
   end
 
+  def with_tag
+    @tag = params[:tag]
+    @mods = tagged_with(@tag)
+    render :index
+  end
+
   private
   def mod_params
-    params.require(:mod).permit(:title, :description, :tags, :download_url)
+    params.require(:mod).permit(:title, :description, :tags, :download_url, :image)
+  end
+
+  def tagged_with(tag)
+    Mod.all.select { |mod| mod.tags.include?(tag) }
   end
 end
