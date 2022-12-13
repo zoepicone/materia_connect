@@ -6,11 +6,12 @@ class Mod < ApplicationRecord
   # has_many :authors, through: :mod_authors
   # has_many :mod_dependencies, dependent
 
-  has_many_attached :image
+  # must have at least one image
+  has_many_attached :images
 
   validates :title, presence: true, uniqueness: true, length: { maximum: 48 }
-  validates :description, presence: true
-  validates :download_url, presence: true
+  validates :description, presence: true, length: { maximum: 2048 }
+  validates :download_url, presence: true, length: { maximum: 256 }
   validates :user_id, presence: true
 
   attr_accessor :tag_string

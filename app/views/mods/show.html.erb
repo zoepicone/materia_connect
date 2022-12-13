@@ -1,26 +1,47 @@
-<h1><%= @mod.title %></h1>
+<div class="flex-container" id="view-mod">
+  <div id="view-mod-left">
+    <h1><%= @mod.title %></h1>
 
-<p>
-  <bx-btn href="<%= @mod.download_url %>">Download</bx-btn>
-  <% if (current_user.present? && current_user.id == @mod.user_id) %>
-    <bx-btn href="<%= edit_mod_path(@mod) %>" kind="secondary">Edit Mod</bx-btn>
-  <% end %>
-</p>
+    <% if @mod.images.attached? %>
+      <skeleton-carousel dots nav loop>
+        <% @mod.images.each do |image| %>
+          <iron-image data-src="<%= image.url %>" sizing="cover" preload fade></iron-image>
+        <% end %>
+      </skeleton-carousel>
+    <% end %>
 
-<p>Tags:
-  <% @mod.tags.each do |tag| %>
-    <bx-tag><a href="<%= mod_tag_path(tag) %>"><%= tag %></a></bx-tag>
-  <% end %>
-</p>
+    <p>Tags:
+      <% @mod.tags.each do |tag| %>
+        <bx-tag>
+          <bx-link href="<%= mod_tag_path(tag) %>"><%= tag %></bx-link>
+        </bx-tag>
+      <% end %>
+    </p>
 
-<p>Author: <%= User.find(@mod.user_id).username %></p>
+    <p>Author: <%= User.find(@mod.user_id).username %></p>
 
-<p>Published: <%= localize(@mod.created_at, :format => :long) %></p>
+    <p>Published: <%= localize(@mod.created_at, :format => :long) %></p>
 
-<p>Last Updated: <%= localize(@mod.updated_at, :format => :long) %></p>
+    <p>Last Updated: <%= localize(@mod.updated_at, :format => :long) %></p>
 
-<p><%= @mod.description %></p>
+    <p><%= @mod.description %></p>
 
 
+    <p>
+      <bx-link href="javascript:history.back()">Back</bx-link>
+    </p>
+  </div>
 
-<p><bx-link href="javascript:history.back()">Back</bx-link></p>
+  <div class="flex-container" id="view-mod-right">
+    <div>
+      <bx-btn href="<%= @mod.download_url %>">Download</bx-btn>
+    </div>
+    <% if (current_user.present? && current_user.id == @mod.user_id) %>
+      <div>
+        <bx-btn href="<%= edit_mod_path(@mod) %>" kind="secondary">Edit Mod</bx-btn>
+      </div>
+    <% end %>
+
+  </div>
+</div>
+

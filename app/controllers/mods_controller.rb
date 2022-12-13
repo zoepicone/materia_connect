@@ -1,6 +1,11 @@
 class ModsController < ApplicationController
   def index
-    @mods = Mod.all
+    @pagy, @mods = pagy_countless(Mod.order(created_at: :desc), items: 10)
+
+    respond_to do |format|
+      format.html # GET
+      format.turbo_stream # POST
+    end
   end
 
   def show
@@ -50,7 +55,7 @@ class ModsController < ApplicationController
 
   private
   def mod_params
-    params.require(:mod).permit(:title, :description, :tags, :download_url, :image)
+    params.require(:mod).permit(:title, :description, :tag_string, :download_url, images: [])
   end
 
   def tagged_with(tag)

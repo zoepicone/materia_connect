@@ -1,0 +1,9 @@
+<%= turbo_stream.append "mods" do %>
+  <%= render partial: "mods/mod", collection: @mods %>
+<% end %>
+
+<% if @pagy.next.present? %>
+  <%= turbo_stream.replace "pagination" do %>
+    <%= turbo_frame_tag "pagination", src: mods_path(page: @pagy.next, format: :turbo_stream), loading: :lazy %>
+  <% end %>
+<% end %>

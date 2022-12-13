@@ -1,0 +1,8 @@
+<bx-clickable-tile href="<%= mod_path(mod) %>">
+  <% if mod.images.attached? %>
+    <%= image_tag mod.images.first %>
+  <% else %>
+    <%= image_tag("placeholder.png", height: '64') %>
+  <% end %>
+  <h3><%= mod.title %></h3>
+</bx-clickable-tile>

@@ -1,0 +1,25 @@
+skeleton-carousel {
+  max-width: 500px;
+  max-height: 300px;
+}
+
+#view-mod {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+
+}
+
+#view-mod-left {
+  min-width: 500px;
+}
+
+#view-mod-right {
+  padding-top: 14px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}

@@ -1,10 +1,14 @@
-test:
-  service: Disk
-  root: <%= Rails.root.join("tmp/storage") %>
+google:
+  service: GCS
+  project: materia-ffxiv
+  credentials: <%= ENV['GOOGLE_APPLICATION_CREDENTIALS'].as_json %>
+  bucket: materia-connect
 
-local:
-  service: Disk
-  root: <%= Rails.root.join("storage") %>
+google_dev:
+  service: GCS
+  project: materia-ffxiv
+  credentials: <%= Rails.root.join("config/secrets/materia.json") %>
+  bucket: materia-connect
 
 # Use bin/rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 # amazon:

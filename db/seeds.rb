@@ -35,9 +35,12 @@ mod2 = Mod.create!(title: 'Mod 2',
 50.times do
   title = Faker::Book.unique.title
   title = Faker::Book.unique.title while title.length > 48
-  Mod.create!(title:,
-              description: Faker::Lorem.paragraph,
-              tags: Faker::Lorem.words(number: 10),
-              download_url: 'https://youtube.com/watch?v=dQw4w9WgXcQ',
-              user_id: User.order(Arel.sql('RANDOM()')).first.id)
+  m = Mod.create!(title:,
+                  description: Faker::Lorem.paragraph,
+                  tags: Faker::Lorem.words(number: 10),
+                  download_url: 'https://youtube.com/watch?v=dQw4w9WgXcQ',
+                  user_id: User.order(Arel.sql('RANDOM()')).first.id)
+  m.images.attach(io: File.open('app/assets/images/placeholder.png'),
+                  filename: 'placeholder.png',
+                  content_type: 'image/png')
 end

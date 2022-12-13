@@ -18,13 +18,19 @@
   </div>
 </div>
 
-<% @mods.each do |mod| %>
-  <bx-clickable-tile href="<%= mod_path(mod) %>">
-    <%= image_tag("placeholder.png", height: '64') %>
-    <h3><%= mod.title %></h3>
-  </bx-clickable-tile>
-<% end %>
+<div id="mods">
+  <% @mods.each do |mod| %>
+    <%= render "mod", mod: mod %>
+  <% end %>
 </div>
+
+<%= turbo_frame_tag "pagination", src: mods_path(format: :turbo_stream), loading: :lazy %>
+
+<%#= render partial: "next_page", locals: { collection: @mods } %>
+
+<!--<div id="next_link">-->
+  <%#= button_to "Next", pagy_url_for(@pagy, @pagy.next) %>
+<!--</div>-->
 
 <% if @tag.present? %>
   <p>

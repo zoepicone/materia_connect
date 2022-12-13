@@ -2,7 +2,6 @@
 
 pin "application", preload: true
 pin "@hotwired/turbo-rails", to: "turbo.min.js", preload: true
-pin "@hotwired/stimulus", to: "stimulus.min.js", preload: true
 pin "@hotwired/stimulus-loading", to: "stimulus-loading.js", preload: true
 pin_all_from "app/javascript/controllers", under: "controllers"
 pin "@carbon/web-components/dist/button.min.js", to: "https://cdn.jsdelivr.net/npm/@carbon/web-components@1.22.0/dist/button.min.js"
@@ -24,3 +23,20 @@ pin "@carbon/web-components/dist/textarea.min.js", to: "https://cdn.jsdelivr.net
 pin "@carbon/web-components/dist/notification.min.js", to: "https://cdn.jsdelivr.net/npm/@carbon/web-components@1.22.0/dist/notification.min.js"
 pin "@carbon/web-components/dist/list.min.js", to: "https://cdn.jsdelivr.net/npm/@carbon/web-components@1.22.0/dist/list.min.js"
 pin "@carbon/web-components/dist/tile.min.js", to: "https://cdn.jsdelivr.net/npm/@carbon/web-components@1.22.0/dist/tile.min.js"
+pin "@fabricelements/skeleton-carousel/skeleton-carousel.min.js", to: "https://cdn.jsdelivr.net/npm/@fabricelements/skeleton-carousel@3.0.2/skeleton-carousel.min.js"
+pin "@polymer/iron-a11y-keys-behavior/iron-a11y-keys-behavior.js", to: "https://cdn.jsdelivr.net/npm/@polymer/iron-a11y-keys-behavior@3.0.1/iron-a11y-keys-behavior.js"
+pin "@polymer/iron-behaviors/", to: "https://cdn.jsdelivr.net/npm/@polymer/iron-behaviors@3.0.1/"
+pin "@polymer/iron-flex-layout/iron-flex-layout.js", to: "https://cdn.jsdelivr.net/npm/@polymer/iron-flex-layout@3.0.1/iron-flex-layout.js"
+pin "@polymer/iron-icon/iron-icon.js", to: "https://cdn.jsdelivr.net/npm/@polymer/iron-icon@3.0.1/iron-icon.js"
+pin "@polymer/iron-icons/iron-icons.js", to: "https://cdn.jsdelivr.net/npm/@polymer/iron-icons@3.0.1/iron-icons.js"
+pin "@polymer/iron-iconset-svg/iron-iconset-svg.js", to: "https://cdn.jsdelivr.net/npm/@polymer/iron-iconset-svg@3.0.1/iron-iconset-svg.js"
+pin "@polymer/iron-meta/iron-meta.js", to: "https://cdn.jsdelivr.net/npm/@polymer/iron-meta@3.0.1/iron-meta.js"
+pin "@polymer/iron-selector/iron-selector.js", to: "https://cdn.jsdelivr.net/npm/@polymer/iron-selector@3.0.1/iron-selector.js"
+pin "@polymer/paper-behaviors/paper-inky-focus-behavior.js", to: "https://cdn.jsdelivr.net/npm/@polymer/paper-behaviors@3.0.1/paper-inky-focus-behavior.js"
+pin "@polymer/paper-icon-button/paper-icon-button.js", to: "https://cdn.jsdelivr.net/npm/@polymer/paper-icon-button@3.0.2/paper-icon-button.js"
+pin "@polymer/paper-ripple/paper-ripple.js", to: "https://cdn.jsdelivr.net/npm/@polymer/paper-ripple@3.0.2/paper-ripple.js"
+pin "@polymer/paper-styles/default-theme.js", to: "https://cdn.jsdelivr.net/npm/@polymer/paper-styles@3.0.1/default-theme.js"
+pin "@polymer/polymer/", to: "https://cdn.jsdelivr.net/npm/@polymer/polymer@3.5.1/"
+pin "@webcomponents/shadycss/entrypoints/", to: "https://cdn.jsdelivr.net/npm/@webcomponents/shadycss@1.11.1/entrypoints/"
+pin "@polymer/iron-image/iron-image.min.js", to: "https://cdn.jsdelivr.net/npm/@polymer/iron-image@3.0.2/iron-image.min.js"
+pin "@hotwired/stimulus", to: "https://cdn.jsdelivr.net/npm/@hotwired/stimulus@3.2.1/dist/stimulus.js"

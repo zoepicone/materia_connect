@@ -1,5 +1,6 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 import "@hotwired/turbo-rails"
+import '@hotwired/stimulus'
 import "controllers"
 import "@carbon/web-components/dist/button.min.js"
 import "@carbon/web-components/dist/link.min.js"
@@ -13,3 +14,5 @@ import "@carbon/web-components/dist/tile.min.js"
 import "@carbon/web-components/dist/file-uploader.min.js"
 import "@carbon/web-components/dist/tag.min.js"
 import "@carbon/web-components/dist/modal.min.js"
+import "@fabricelements/skeleton-carousel/skeleton-carousel.min.js"
+import "@polymer/iron-image/iron-image.min.js"
