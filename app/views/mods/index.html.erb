@@ -18,11 +18,7 @@
   </div>
 </div>
 
-<div id="mods">
-  <% @mods.each do |mod| %>
-    <%= render "mod", mod: mod %>
-  <% end %>
-</div>
+<div id="mods"></div>
 
 <%= turbo_frame_tag "pagination", src: mods_path(format: :turbo_stream), loading: :lazy %>
 
