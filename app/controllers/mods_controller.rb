@@ -63,19 +63,15 @@ class ModsController < ApplicationController
     end
   end
 
-  def mod_params
-    params.require(:mod).permit(:title,
-                                :description,
-                                :tag_string,
-                                :download_url,
-                                :nsfw,
-                                :user_id,
-                                :unlisted,
-                                :premium,
-                                images: [])
-  end
+  def mod_params = params.require(:mod).permit(:title,
+                                               :description,
+                                               :tag_string,
+                                               :download_url,
+                                               :nsfw,
+                                               :user_id,
+                                               :unlisted,
+                                               :premium,
+                                               images: [])
 
-  def tagged_with(tag)
-    Mod.where("'{#{tag}}' <@ tags")
-  end
+  def tagged_with(tag) = Mod.where("'{#{tag}}' <@ tags")
 end
