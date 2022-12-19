@@ -11,14 +11,21 @@ class Mod < ApplicationRecord
 
   validates :title, presence: true, uniqueness: true, length: { maximum: 48 }
   validates :description, presence: true, length: { maximum: 2048 }
-  validates :download_url, presence: true, length: { maximum: 256 }
+  validates :download_url, presence: true, http_url: true, length: { maximum: 256 }
   validates :user_id, presence: true
 
   attr_accessor :tag_string
 
   before_save :set_tags, if: :tag_string
+  before_save :fix_booleans
 
   def set_tags
     self.tags = tag_string.split(',').map(&:strip)
+  end
+
+  def fix_booleans
+    %i[nsfw unlisted premium].each do |param|
+      self[param] = false unless self[param]
+    end
   end
 end

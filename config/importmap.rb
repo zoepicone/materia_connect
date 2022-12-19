@@ -39,4 +39,4 @@ pin "@polymer/paper-styles/default-theme.js", to: "https://cdn.jsdelivr.net/npm/
 pin "@polymer/polymer/", to: "https://cdn.jsdelivr.net/npm/@polymer/polymer@3.5.1/"
 pin "@webcomponents/shadycss/entrypoints/", to: "https://cdn.jsdelivr.net/npm/@webcomponents/shadycss@1.11.1/entrypoints/"
 pin "@polymer/iron-image/iron-image.min.js", to: "https://cdn.jsdelivr.net/npm/@polymer/iron-image@3.0.2/iron-image.min.js"
-pin "@hotwired/stimulus", to: "https://cdn.jsdelivr.net/npm/@hotwired/stimulus@3.2.1/dist/stimulus.js"
+pin "@hotwired/stimulus", to: "https://cdn.jsdelivr.net/npm/@hotwired/stimulus@3.2.1/dist/stimulus.js", preload: true

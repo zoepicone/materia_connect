@@ -5,11 +5,11 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root 'dashboard#index'
 
-  resources :mods do
-    collection do
-      post :index
-    end
-  end
+  resources :mods # do
+  #   collection do
+  #     post :index, only: [:index]
+  #   end
+  # end
 
 
   get 'mods/tag/:tag', to: 'mods#with_tag', as: :mod_tag

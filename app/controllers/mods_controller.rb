@@ -1,11 +1,12 @@
 class ModsController < ApplicationController
   def index
-    @pagy, @mods = pagy_countless(Mod.order(created_at: :desc), items: 16)
-
-    respond_to do |format|
-      format.html # GET
-      format.turbo_stream # POST
-    end
+    @mods = Mod.order(created_at: :desc)
+    # @pagy, @mods = pagy_countless(Mod.order(created_at: :desc), items: 16)
+    #
+    # respond_to do |format|
+    #   format.html # GET
+    #   format.turbo_stream # POST
+    # end
   end
 
   def show
@@ -17,12 +18,13 @@ class ModsController < ApplicationController
   end
 
   def create
+    fix_checkbox_params
     @mod = Mod.new(mod_params)
 
     if @mod.save
       redirect_to @mod
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity, error: @mod.errors
     end
   end
 
@@ -49,16 +51,31 @@ class ModsController < ApplicationController
 
   def with_tag
     @tag = params[:tag]
-    @mods = tagged_with(@tag)
+    # @pagy, @mods = pagy_countless(tagged_with(@tag), items: 16)
+    @mods = tagged_with(@tag).order(created_at: :desc)
     render :index
   end
 
   private
+  def fix_checkbox_params
+    %i[nsfw unlisted premium].each do |param|
+      params[:mod][param] = false unless params[:mod][param]
+    end
+  end
+
   def mod_params
-    params.require(:mod).permit(:title, :description, :tag_string, :download_url, images: [])
+    params.require(:mod).permit(:title,
+                                :description,
+                                :tag_string,
+                                :download_url,
+                                :nsfw,
+                                :user_id,
+                                :unlisted,
+                                :premium,
+                                images: [])
   end
 
   def tagged_with(tag)
-    Mod.all.select { |mod| mod.tags.include?(tag) }
+    Mod.where("'{#{tag}}' <@ tags")
   end
 end

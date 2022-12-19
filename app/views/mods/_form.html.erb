@@ -1,7 +1,18 @@
-<form action="/mods" method="post">
-  <input type="hidden" name="mod[user_id]" value="<%= current_user.id %>" />
+<%= form_with model: @mod do |f| %>
+  <% if @mod.errors.any? %>
+    <div id="error_explanation">
+      <bx-inline-notification title="<%= pluralize(@mod.errors.count, "error") %> prohibited this mod from being saved:"
+                              subtitle="<% @mod.errors.full_messages.each do |message| %>
+                                          <%= message %>&#10;
+                                        <% end %>"
+                              kind="error">
+      </bx-inline-notification>
+    </div>
+  <% end %>
 
-  <bx-form-item>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+
+  <bx-form-item id="in-form">
     <bx-input name="mod[title]" value="<%= @mod.title %>">
       <span slot="label-text">Title</span>
       <span slot="helper-text">Must be shorter than or equal to 48 characters long.</span>
@@ -20,88 +31,106 @@
       </bx-form-item>
     </div>
 
-    <div>
-      <bx-form-item>
-        <bx-file-uploader helper-text="Only .jpg and .png files. 500kb max file size." label-text="Mod Image">
-          <bx-file-drop-container accept="image/jpeg, image/png" size="500000" value="<%= @mod.images %>">
-            Drag and drop your images here or click to upload.
-            At least one image must be provided.
-          </bx-file-drop-container>
-        </bx-file-uploader>
-      </bx-form-item>
-    </div>
+<!--    <div>-->
+<!--      <bx-form-item>-->
+<!--        <bx-file-uploader helper-text="Only .jpg and .png files. 500kb max file size." label-text="Mod Image">-->
+<!--          <bx-file-drop-container accept="image/jpeg, image/png" size="500000"-->
+<!--                                  multiple="true"-->
+<!--                                  enctype="multipart/form-data"-->
+<!--                                  name="mod[images]"-->
+<!--                                  value="<%#= @mod.images %>"-->
+<!--                                  data-direct-upload-url="<%#= rails_direct_uploads_url %>">-->
+<!--            Drag and drop your images here or click to upload.-->
+<!--            At least one image must be provided.-->
+<!--          </bx-file-drop-container>-->
+<!--        </bx-file-uploader>-->
+<!--      </bx-form-item>-->
+<!--    </div>-->
   </div>
 
-  <bx-form-item>
-    <bx-input name="mod[tags]" value="<%= @mod.tags.join(', ') %>">
+  <bx-form-item id="in-form">
+    <bx-input name="mod[tag_string]" value="<%= @mod.tag_string.present? ? @mod.tag_string : @mod.tags.join(', ')  %>">
       <span slot="label-text">Tags</span>
       <span slot="helper-text">Separate tags by commas, eg; "bibo+, female, clothing".</span>
       <span slot="validity-message">Something isn't right!</span>
     </bx-input>
   </bx-form-item>
 
-  <bx-form-item>
-    <bx-input name="mod[download-url]" value="<%= @mod.download_url %>" type="url" pattern="https?://.+">
+  <bx-form-item id="in-form">
+    <bx-input name="mod[download_url]" value="<%= @mod.download_url %>" type="url" pattern="https?://.+">
       <span slot="label-text">Download URL</span>
       <span slot="helper-text">Must be a valid URL.</span>
       <span slot="validity-message">Something isn't right!</span>
     </bx-input>
   </bx-form-item>
 
+
+  <div class="flex-container" id="in-form">
+    <bx-form-item>
+      <bx-checkbox name="mod[nsfw]" value="<%= @mod.nsfw.present? ? @mod.nsfw : true %>" label-text="NSFW"></bx-checkbox>
+    </bx-form-item>
+    <bx-form-item>
+      <bx-checkbox name="mod[premium]" value="<%= @mod.premium.present? ? @mod.premium : true %>" label-text="Paid Content"></bx-checkbox>
+    </bx-form-item>
+    <bx-form-item>
+      <bx-checkbox name="mod[unlisted]" value="<%= @mod.unlisted.present? ? @mod.unlisted : true %>" label-text="Unlisted"></bx-checkbox>
+    </bx-form-item>
+  </div>
+
   <bx-form-item>
     <div>
-      <bx-btn type="submit" value="Submit" kind="primary">Publish</bx-btn>
+      <%= f.submit 'Publish', type: 'submit', id: 'create-mod' %>
       <% if edit == true %>
         <bx-btn type="destroy" kind="danger" id="delete-mod" data-confirm="Are you sure?">Delete</bx-btn>
       <% end %>
       <bx-btn type="back" kind="ghost" href="javascript:history.back()">Back</bx-btn>
     </div>
   </bx-form-item>
-</form>
+<% end %>
 
 <%= render "confirm_modal" if edit == true %>
 
 <script type="text/javascript">
-  document.getElementById('delete-mod').addEventListener('click', () => {
-    document.getElementById('confirm-modal').open = true;
-  });
+    document.getElementById('delete-mod').addEventListener('click', () => {
+        document.getElementById('confirm-modal').open = true;
+    });
 </script>
 
 <%#= form_with model: mod do |form| %>
 
 <!--  <div>-->
-    <%#= form.label :title %>
-    <%#= form.text_field :title %>
-    <%# @mod.errors.full_messages_for(:title).each do |message| %>
+<%#= form.label :title %>
+<%#= form.text_field :title %>
+<%# @mod.errors.full_messages_for(:title).each do |message| %>
 <!--      <div><%#= message %></div>-->
-    <%# end %>
+<%# end %>
 <!--  </div>-->
 
 <!--  <div>-->
-    <%#= form.label :description %>
-    <%#= form.text_area :description %>
-    <%# @mod.errors.full_messages_for(:description).each do |message| %>
+<%#= form.label :description %>
+<%#= form.text_area :description %>
+<%# @mod.errors.full_messages_for(:description).each do |message| %>
 <!--      <div><%#= message %></div>-->
-    <%# end %>
+<%# end %>
 <!--  </div>-->
 
 <!--  <div>-->
-    <%#= form.label :tags %>
-    <%#= form.text_field :tags %>
-    <%# @mod.errors.full_messages_for(:tags).each do |message| %>
+<%#= form.label :tags %>
+<%#= form.text_field :tags %>
+<%# @mod.errors.full_messages_for(:tags).each do |message| %>
 <!--      <div><%#= message %></div>-->
-    <%# end %>
+<%# end %>
 <!--  </div>-->
 
 <!--  <div>-->
-    <%#= form.label :download_url %>
-    <%#= form.text_field :download_url %>
-    <%# @mod.errors.full_messages_for(:download_url).each do |message| %>
+<%#= form.label :download_url %>
+<%#= form.text_field :download_url %>
+<%# @mod.errors.full_messages_for(:download_url).each do |message| %>
 <!--      <div><%#= message %></div>-->
-    <%# end %>
+<%# end %>
 <!--  </div>-->
 
 <!--  <div>-->
-    <%#= form.submit %>
+<%#= form.submit %>
 <!--  </div>-->
 <%# end %>

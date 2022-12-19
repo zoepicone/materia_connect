@@ -39,7 +39,10 @@ mod2 = Mod.create!(title: 'Mod 2',
                   description: Faker::Lorem.paragraph,
                   tags: Faker::Lorem.words(number: 10),
                   download_url: 'https://youtube.com/watch?v=dQw4w9WgXcQ',
-                  user_id: User.order(Arel.sql('RANDOM()')).first.id)
+                  user_id: User.order(Arel.sql('RANDOM()')).first.id,
+                  nsfw: [true, false].sample,
+                  unlisted: [true, false].sample,
+                  premium: [true, false].sample)
   m.images.attach(io: File.open('app/assets/images/placeholder.png'),
                   filename: 'placeholder.png',
                   content_type: 'image/png')
