@@ -16,4 +16,4 @@ import "@carbon/web-components/dist/tag.min.js"
 import "@carbon/web-components/dist/modal.min.js"
 import "@carbon/web-components/dist/checkbox.min.js"
 import "@carbon/web-components/dist/search.min.js"
-import "stimulus-carousel"
+import 'bootstrap'

@@ -2,7 +2,8 @@
   <% if @mod.errors.any? %>
     <div id="error_explanation">
       <bx-inline-notification title="<%= pluralize(@mod.errors.count, "error") %> prohibited this mod from being saved:"
-                              subtitle="<% @mod.errors.full_messages.each do |message| %>
+                              subtitle="
+                                <% @mod.errors.full_messages.each do |message| %>
                                           <%= message %>&#10;
                                         <% end %>"
                               kind="error">
@@ -31,25 +32,34 @@
       </bx-form-item>
     </div>
 
-<!--    <div>-->
-<!--      <bx-form-item>-->
-<!--        <bx-file-uploader helper-text="Only .jpg and .png files. 500kb max file size." label-text="Mod Image">-->
-<!--          <bx-file-drop-container accept="image/jpeg, image/png" size="500000"-->
-<!--                                  multiple="true"-->
-<!--                                  enctype="multipart/form-data"-->
-<!--                                  name="mod[images]"-->
-<!--                                  value="<%#= @mod.images %>"-->
-<!--                                  data-direct-upload-url="<%#= rails_direct_uploads_url %>">-->
-<!--            Drag and drop your images here or click to upload.-->
-<!--            At least one image must be provided.-->
-<!--          </bx-file-drop-container>-->
-<!--        </bx-file-uploader>-->
-<!--      </bx-form-item>-->
-<!--    </div>-->
+    <div data-controller="multi-upload">
+      <div class="images">
+        <%= f.label :images %>
+        <%= f.file_field :images, multiple: true, data: { action: "multi-upload#addFile" } %>
+      </div>
+
+      <div data-multi-upload-target="files"></div>
+    </div>
+
+    <!--    <div>-->
+    <!--      <bx-form-item>-->
+    <!--        <bx-file-uploader helper-text="Only .jpg and .png files. 500kb max file size." label-text="Mod Image">-->
+    <!--          <bx-file-drop-container accept="image/jpeg, image/png" size="500000"-->
+    <!--                                  multiple="true"-->
+    <!--                                  enctype="multipart/form-data"-->
+    <!--                                  name="mod[images]"-->
+    <!--                                  value="<%#= @mod.images %>"-->
+    <!--                                  data-direct-upload-url="<%#= rails_direct_uploads_url %>">-->
+    <!--            Drag and drop your images here or click to upload.-->
+    <!--            At least one image must be provided.-->
+    <!--          </bx-file-drop-container>-->
+    <!--        </bx-file-uploader>-->
+    <!--      </bx-form-item>-->
+    <!--    </div>-->
   </div>
 
   <bx-form-item id="in-form">
-    <bx-input name="mod[tag_string]" value="<%= @mod.tag_string.present? ? @mod.tag_string : @mod.tags.join(', ')  %>">
+    <bx-input name="mod[tag_string]" value="<%= @mod.tag_string.present? ? @mod.tag_string : @mod.tags.join(', ') %>">
       <span slot="label-text">Tags</span>
       <span slot="helper-text">Separate tags by commas, eg; "bibo+, female, clothing".</span>
       <span slot="validity-message">Something isn't right!</span>

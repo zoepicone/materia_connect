@@ -52,7 +52,8 @@ gem 'bootsnap', require: false
 gem 'sassc-rails'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.12'
+gem 'active_storage_validations'
 
 # Use OmniAuth for authentication
 gem 'omniauth'
@@ -67,6 +68,12 @@ gem 'faker'
 
 # Use Pagy for pagination
 gem 'pagy'
+
+# Use Redcarpet for Markdown rendering
+gem 'redcarpet'
+
+# The web components dream was for naught. Bootstrap has returned.
+gem 'bootstrap', '~> 5.1.3'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

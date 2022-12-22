@@ -95,3 +95,14 @@ bx-toggle {
   border-color: var(--cds-focus,#0f62fe);
   box-shadow: inset 0 0 0 1px var(--cds-focus,#0f62fe),inset 0 0 0 2px var(--cds-ui-background,#fff);
 }
+
+.selected-file {
+  background: #ddeeff;
+  border-radius: 0.2em;
+  margin-top: 1px;
+  padding: 0.2em;
+}
+
+.selected-file input[type='file'] {
+  display: none;
+}
