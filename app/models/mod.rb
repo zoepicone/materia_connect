@@ -1,10 +1,16 @@
 class Mod < ApplicationRecord
-  # has_many :comments, dependent: :destroy
-  # has_many :mod_tags, dependent: :destroy
-  # has_many :tags, through: :mod_tags
-  # has_many :mod_authors, dependent: :destroy
-  # has_many :authors, through: :mod_authors
-  # has_many :mod_dependencies, dependent
+  include PgSearch::Model
+
+  pg_search_scope :fuzzy_search,
+                  against: [:title, :description, :tags],
+                  associated_against: { user: :username },
+                  ignoring: :accents,
+                  using: {
+                    trigram: { word_similarity: true, only: %i[title tags] },
+                    tsearch: { prefix: true, dictionary: 'english' }
+                  }
+
+  self.implicit_order_column = 'created_at'
 
   # must have at least one image
   has_many_attached :images
@@ -14,18 +20,31 @@ class Mod < ApplicationRecord
   validates :download_url, presence: true, http_url: true, length: { maximum: 256 }
   validates :user_id, presence: true
 
+  belongs_to :user
+
   attr_accessor :tag_string
 
   before_save :set_tags, if: :tag_string
   before_save :fix_booleans
 
   def set_tags
-    self.tags = tag_string.split(',').map(&:strip)
+    self.tags = tag_string.downcase.split(',').map(&:strip)
   end
 
   def fix_booleans
     %i[nsfw unlisted premium].each do |param|
       self[param] = false unless self[param]
     end
+  end
+
+  def creator = user.username
+
+  def public? = !unlisted
+
+  def self.search(query)
+    return nil if query.blank?
+
+    query = query.downcase.strip
+    fuzzy_search(query)
   end
 end

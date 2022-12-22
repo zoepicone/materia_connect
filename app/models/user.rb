@@ -1,7 +1,11 @@
 class User < ApplicationRecord
+  self.implicit_order_column = 'created_at'
+
   validates :name, :email, presence: true
   validates :uid, uniqueness: { scope: :provider }
   validates :username, presence: true, uniqueness: true
+
+  has_many :mods, dependent: :destroy
 
   def self.find_or_create_by_auth(auth_data)
     # TODO: Check if the provider already exists, so we don't add it twice

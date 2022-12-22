@@ -1,0 +1,19 @@
+<div class="flex-container" id="view-user">
+  <div id="view-mod-left">
+    <h1><%= @user.username %></h1>
+    <p><%= @user.email %></p>
+    <p><%= @user.name %></p>
+    <p><%= @user.uid %></p>
+
+    <div id="mods" data-no-turbolink>
+      <%= render partial: "mods/mod", collection: @mods %>
+    </div>
+  </div>
+
+  <div id="view-mod-right">
+    <bx-btn href="<%= new_mod_path %>">New Mod</bx-btn>
+    <% if @user.id == current_user&.id %>
+      <bx-btn href="<%= edit_user_path(@user) %>">Edit Profile</bx-btn>
+    <% end %>
+  </div>
+</div>

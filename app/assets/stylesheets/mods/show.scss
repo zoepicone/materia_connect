@@ -1,6 +1,22 @@
-skeleton-carousel {
-  max-width: 500px;
+.swiper-slide {
   max-height: 300px;
+  display: inline-flex;
+}
+
+img {
+  object-fit: contain;
+}
+
+.pink {
+  background-color: lightpink;
+}
+
+.green {
+  background-color: lightgreen;
+}
+
+.blue {
+  background-color: lightblue;
 }
 
 #view-mod {

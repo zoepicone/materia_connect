@@ -32,3 +32,5 @@
 en:
   product_name: "Materia Connect"
   hello: "Hello world"
+  login_required: "You must be logged in to access this page."
+  mod_permission_denied: "You do not have permission to view this mod."

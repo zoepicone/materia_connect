@@ -1,6 +1,8 @@
 class CreateUsers < ActiveRecord::Migration[7.0]
   def change
-    create_table :users do |t|
+    enable_extension 'pgcrypto' unless extension_enabled?('pgcrypto')
+
+    create_table :users, id: :uuid do |t|
       t.string :provider
       t.string :uid
       t.string :username
@@ -8,6 +10,6 @@ class CreateUsers < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
-    add_reference :mods, :user, null: false, foreign_key: true
+    add_reference :mods, :user, type: :uuid, null: false, foreign_key: true
   end
 end

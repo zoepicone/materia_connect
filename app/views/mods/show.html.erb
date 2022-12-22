@@ -3,11 +3,25 @@
     <h1><%= @mod.title %></h1>
 
     <% if @mod.images.attached? %>
-      <skeleton-carousel dots nav loop>
-        <% @mod.images.each do |image| %>
-          <iron-image data-src="<%= image.url %>" sizing="cover" preload fade></iron-image>
-        <% end %>
-      </skeleton-carousel>
+      <div data-controller="carousel" class="swiper-container">
+        <div class="swiper-wrapper">
+          <% @mod.images.each do |image| %>
+            <div class="swiper-slide">
+              <img src="<%= image.url %>" />
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div data-controller="carousel" class="swiper-container"
+           data-carousel-options-value='{
+    "pagination": { "el": ".swiper-pagination",
+                    "dynamicBullets": "true" },
+    "navigation": { "nextEl": ".swiper-button-next",
+                    "prevEl": ".swiper-button-prev"}}'>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
     <% end %>
 
     <p>Tags:
@@ -18,14 +32,15 @@
       <% end %>
     </p>
 
-    <p>Author: <%= User.find(@mod.user_id).username %></p>
+    <p>Author:
+      <bx-link href="<%= user_path(@mod.user) %>"><%= @mod.user.username %></bx-link>
+    </p>
 
-    <p>Published: <%= localize(@mod.created_at, :format => :long) %></p>
+    <p>Published: <%= localize(@mod.created_at, format: :long) %></p>
 
-    <p>Last Updated: <%= localize(@mod.updated_at, :format => :long) %></p>
+    <p>Last Updated: <%= localize(@mod.updated_at, format: :long) %></p>
 
     <p><%= @mod.description %></p>
-
 
     <p>
       <bx-link href="javascript:history.back()">Back</bx-link>

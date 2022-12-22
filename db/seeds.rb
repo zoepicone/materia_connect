@@ -24,13 +24,13 @@ mod1 = Mod.create!(title: 'Mod 1',
                    description: 'This is the first mod.',
                    tags: %w[tag1 tag2],
                    download_url: 'https://youtube.com/watch?v=dQw4w9WgXcQ',
-                   user_id: 1)
+                   user_id: User.first.id)
 
 mod2 = Mod.create!(title: 'Mod 2',
                    description: 'This is the second mod.',
                    tags: %w[tag1 tag3],
                    download_url: 'https://youtube.com/watch?v=dQw4w9WgXcQ',
-                   user_id: 1)
+                   user_id: User.first.id)
 
 50.times do
   title = Faker::Book.unique.title

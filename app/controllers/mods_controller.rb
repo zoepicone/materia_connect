@@ -1,16 +1,16 @@
 class ModsController < ApplicationController
+  before_action :verify_logged_in, only: %i[new create edit update destroy]
+  before_action :verify_user_owns_mod, only: %i[edit update destroy]
+
   def index
-    @mods = Mod.order(created_at: :desc)
-    # @pagy, @mods = pagy_countless(Mod.order(created_at: :desc), items: 16)
-    #
-    # respond_to do |format|
-    #   format.html # GET
-    #   format.turbo_stream # POST
-    # end
+    @mods = public_mods.order(created_at: :desc)
   end
 
   def show
     @mod = Mod.find(params[:id])
+    return if @mod.public? || @mod.user == current_user
+
+    redirect_to mods_path, alert: t('mod_permission_denied')
   end
 
   def new
@@ -18,7 +18,6 @@ class ModsController < ApplicationController
   end
 
   def create
-    fix_checkbox_params
     @mod = Mod.new(mod_params)
 
     if @mod.save
@@ -49,19 +48,20 @@ class ModsController < ApplicationController
     redirect_to mods_path, status: :see_other
   end
 
+  def search
+    @query = params[:query]
+    @mods = Mod.search(@query)&.where(unlisted: false)
+  end
+
   def with_tag
     @tag = params[:tag]
-    # @pagy, @mods = pagy_countless(tagged_with(@tag), items: 16)
     @mods = tagged_with(@tag).order(created_at: :desc)
     render :index
   end
 
   private
-  def fix_checkbox_params
-    %i[nsfw unlisted premium].each do |param|
-      params[:mod][param] = false unless params[:mod][param]
-    end
-  end
+
+  def public_mods = Mod.where(unlisted: false)
 
   def mod_params = params.require(:mod).permit(:title,
                                                :description,
@@ -73,5 +73,11 @@ class ModsController < ApplicationController
                                                :premium,
                                                images: [])
 
-  def tagged_with(tag) = Mod.where("'{#{tag}}' <@ tags")
+  def tagged_with(tag) = public_mods.where("'{#{tag}}' <@ tags")
+
+  def verify_user_owns_mod
+    return if Mod.find(params[:id]).user == current_user
+
+    redirect_to mods_path, alert: t('mod_permission_denied')
+  end
 end

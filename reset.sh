@@ -1,0 +1,1 @@
+bin/rake db:drop db:create db:migrate db:schema:dump db:seed

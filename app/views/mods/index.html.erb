@@ -18,13 +18,9 @@
   </div>
 </div>
 
-<!-- this is not fast! -->
-<!-- change this when the carousel works with turbo links -->
 <div id="mods" data-no-turbolink>
   <%= render partial: "mod", collection: @mods %>
 </div>
-
-<%#= turbo_frame_tag "pagination", src: mods_path(format: :turbo_stream), loading: :lazy %>
 
 <% if @tag.present? %>
   <p>
