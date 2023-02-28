@@ -12,6 +12,8 @@ class Mod < ApplicationRecord
 
   self.implicit_order_column = 'created_at'
 
+  belongs_to :user
+
   # must have at least one image
   has_many_attached :images do |attachable|
     attachable.variant :thumb, resize: '300x300^', gravity: 'center', extent: '300x300'
@@ -23,8 +25,6 @@ class Mod < ApplicationRecord
   validates :download_url, presence: true, http_url: true, length: { maximum: 256 }
   validates :user_id, presence: true
   validates :images, attached: true, content_type: %i[png jpg jpeg]
-
-  belongs_to :user
 
   attr_accessor :tag_string
 
