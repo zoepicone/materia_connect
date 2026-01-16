@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.1.2'
+ruby '4.0.0'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem 'rails', '~> 7.0.4'
+gem 'rails', '~> 7.2'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'
@@ -16,7 +16,7 @@ gem 'pg'
 gem 'pg_search'
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem 'puma', '~> 5.0'
+gem 'puma', '~> 6.0'
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem 'importmap-rails'
@@ -67,7 +67,7 @@ gem 'rename'
 gem 'faker'
 
 # Use Pagy for pagination
-gem 'pagy'
+gem 'pagy', '~> 9.1'
 
 # Use Redcarpet for Markdown rendering
 gem 'redcarpet'
@@ -93,6 +93,8 @@ group :development do
   # Use rubocop to lint your code
   gem 'rubocop', require: false
 
+  gem 'readline-ext'
+
   # Add pry for debugging
   gem 'pry'
   gem 'pry-byebug'
@@ -102,5 +104,4 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
   gem 'selenium-webdriver'
-  gem 'webdrivers'
 end

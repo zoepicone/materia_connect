@@ -34,7 +34,7 @@ Rails.application.configure do
   end
 
   # Store uploaded files on Google Cloud Storage.
-  config.active_storage.service = :google_dev
+  config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
