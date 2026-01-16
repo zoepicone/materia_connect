@@ -41,6 +41,13 @@ class Mod < ApplicationRecord
     end
   end
 
+  def truncated_description
+    return unless description.present? && description.is_a?(String)
+    return description if description.length <= 72
+
+    "#{description.slice(0, 48).strip}..."
+  end
+
   def creator = user.username
 
   def public? = !unlisted
