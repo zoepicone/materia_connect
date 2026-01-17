@@ -1,9 +1,13 @@
-<h1>Sign In</h1>
+<div class="sign-in-form">
+  <h1>Sign In</h1>
 
-<bx-btn type='submit' href='/auth/google_oauth2'>Connect with Google</bx-btn>
+  <a type="submit" class="btn btn-primary" href="/auth/google_oauth2" role="button">Connect with Google</a>
 
-<% if Rails.env.development? %>
-  <bx-btn type='submit' kind='danger' method='post' href='/auth/developer'>Connect as Developer</bx-btn>
-<% end %>
+  <% if Rails.env.development? %>
+    <%= form_with url: '/auth/developer', method: :post, data: { turbo: false } do |form| %>
+      <%= form.submit "Connect as Developer", class: 'btn btn-warning' %>
+    <% end %>
+  <% end %>
 
-<p><bx-link href="<%= root_path %>">Back</bx-link></p>
+  <p><a href="<%= root_path %>">Back</a></p>
+</div>
