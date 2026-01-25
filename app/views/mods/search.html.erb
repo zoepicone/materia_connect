@@ -14,7 +14,7 @@
   </div>
 <% end %>
 
-<div id="mods">
+<div id="mods" class="grid" data-controller="mod-list" data-no-turbolink>
   <% if @mods.present? %>
     <% @mods.each do |mod| %>
       <%= render partial: "mods/mod", locals: { mod: mod, id: mod.id } %>
