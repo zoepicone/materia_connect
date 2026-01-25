@@ -1,6 +1,4 @@
 module ApplicationHelper
-  include Pagy::Frontend
-
   def controller_action_name = "#{controller_name}##{action_name}"
 
   def markdown(text)

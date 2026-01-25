@@ -1199,6 +1199,41 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
+      <library name="dotenv (v3.2.0) [path][gem]" type="rubylib">
+        <properties>
+          <option name="additionalInfo">
+            <AdditionalInfo>
+              <option name="authors" value="N/A" />
+              <option name="email" value="N/A" />
+              <option name="homepage" value="N/A" />
+              <option name="summary" value="N/A" />
+            </AdditionalInfo>
+          </option>
+          <option name="fromPath" value="true" />
+          <option name="name" value="dotenv" />
+          <option name="requirePaths">
+            <list>
+              <option value="lib" />
+            </list>
+          </option>
+          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/dotenv-3.2.0" />
+          <option name="version" value="3.2.0" />
+        </properties>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/dotenv-3.2.0/bin" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/dotenv-3.2.0/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/dotenv-3.2.0/bin" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/dotenv-3.2.0/lib" />
+        </SOURCES>
+        <excluded>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/dotenv-3.2.0/bin" />
+        </excluded>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
       <library name="drb (v2.2.3) [path][gem]" type="rubylib">
         <properties>
           <option name="additionalInfo">
@@ -3041,7 +3076,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="pagy (v9.4.0) [path][gem]" type="rubylib">
+      <library name="pagy (v43.2.2) [path][gem]" type="rubylib">
         <properties>
           <option name="additionalInfo">
             <AdditionalInfo>
@@ -3058,34 +3093,34 @@
               <option value="lib" />
             </list>
           </option>
-          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/pagy-9.4.0" />
-          <option name="version" value="9.4.0" />
+          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/pagy-43.2.2" />
+          <option name="version" value="43.2.2" />
         </properties>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/pagy-9.4.0/bin" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/pagy-9.4.0/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/pagy-9.4.0/apps" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/pagy-9.4.0/config" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/pagy-9.4.0/locales" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/pagy-9.4.0/javascripts" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/pagy-9.4.0/stylesheets" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/pagy-43.2.2/bin" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/pagy-43.2.2/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/pagy-43.2.2/apps" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/pagy-43.2.2/config" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/pagy-43.2.2/locales" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/pagy-43.2.2/javascripts" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/pagy-43.2.2/stylesheets" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/pagy-9.4.0/bin" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/pagy-9.4.0/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/pagy-9.4.0/apps" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/pagy-9.4.0/config" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/pagy-9.4.0/locales" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/pagy-9.4.0/javascripts" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/pagy-9.4.0/stylesheets" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/pagy-43.2.2/bin" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/pagy-43.2.2/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/pagy-43.2.2/apps" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/pagy-43.2.2/config" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/pagy-43.2.2/locales" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/pagy-43.2.2/javascripts" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/pagy-43.2.2/stylesheets" />
         </SOURCES>
         <excluded>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/pagy-9.4.0/bin" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/pagy-9.4.0/apps" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/pagy-9.4.0/locales" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/pagy-9.4.0/javascripts" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/pagy-9.4.0/stylesheets" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/pagy-43.2.2/bin" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/pagy-43.2.2/apps" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/pagy-43.2.2/locales" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/pagy-43.2.2/javascripts" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/pagy-43.2.2/stylesheets" />
         </excluded>
       </library>
     </orderEntry>
@@ -5420,6 +5455,44 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
+      <library name="yaml (v0.4.0) [path][gem]" type="rubylib">
+        <properties>
+          <option name="additionalInfo">
+            <AdditionalInfo>
+              <option name="authors" value="N/A" />
+              <option name="email" value="N/A" />
+              <option name="homepage" value="N/A" />
+              <option name="summary" value="N/A" />
+            </AdditionalInfo>
+          </option>
+          <option name="fromPath" value="true" />
+          <option name="name" value="yaml" />
+          <option name="requirePaths">
+            <list>
+              <option value="lib" />
+            </list>
+          </option>
+          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/yaml-0.4.0" />
+          <option name="version" value="0.4.0" />
+        </properties>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/yaml-0.4.0/bin" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/yaml-0.4.0/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/yaml-0.4.0/.github" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/yaml-0.4.0/bin" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/yaml-0.4.0/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/yaml-0.4.0/.github" />
+        </SOURCES>
+        <excluded>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/yaml-0.4.0/bin" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/yaml-0.4.0/.github" />
+        </excluded>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
       <library name="zeitwerk (v2.7.4) [path][gem]" type="rubylib">
         <properties>
           <option name="additionalInfo">
@@ -5601,9 +5674,6 @@
     <entry key="config/routes.rb">
       <value>file://$MODULE_DIR$/config/routes.rb</value>
     </entry>
-    <entry key="config/secrets">
-      <value>file://$MODULE_DIR$/config</value>
-    </entry>
     <entry key="db">
       <value>file://$MODULE_DIR$/db</value>
     </entry>
@@ -5636,6 +5706,10 @@
     </entry>
     <entry key="public/stylesheets">
       <value>file://$MODULE_DIR$/public/stylesheets</value>
+    </entry>
+    <entry key="test/mailers/previews">
+      <value>file://$MODULE_DIR$/test/mailers/previews</value>
+      <value>file://$MODULE_DIR$/test/mailers/previews</value>
     </entry>
     <entry key="tmp">
       <value>file://$MODULE_DIR$/tmp</value>

@@ -11,8 +11,8 @@
 
   <div class="flex-item">
     <p>
-      <% if session[:user_id] %>
-        <bx-btn href="<%= new_mod_path %>">Publish New Mod</bx-btn>
+      <% if session[:user_id] && @tag.blank? %>
+        <a class="btn btn-primary" href="<%= new_mod_path %>">Publish New Mod</a>
       <% end %>
     </p>
   </div>
@@ -22,8 +22,10 @@
   <%= render partial: "mod", collection: @mods %>
 </div>
 
+<%== @pagy.series_nav(:bootstrap) %>
+
 <% if @tag.present? %>
   <p>
-    <bx-link href="javascript:history.back()">Back</bx-link>
+    <a class="btn btn-primary" href="javascript:history.back()">Back</a>
   </p>
 <% end %>

@@ -70,7 +70,7 @@ gem 'rename'
 gem 'faker'
 
 # Use Pagy for pagination
-gem 'pagy', '~> 9.1'
+gem 'pagy', '~> 43.0'
 
 # Use Redcarpet for Markdown rendering
 gem 'redcarpet'
