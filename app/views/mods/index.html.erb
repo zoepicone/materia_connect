@@ -1,4 +1,4 @@
-<div class="flex-container">
+<div class="flex-container justify-content-between">
   <div class="flex-item">
     <h1>
       <% if @tag.present? %>
@@ -9,7 +9,7 @@
     </h1>
   </div>
 
-  <div class="flex-item">
+  <div class="flex-item mt-2">
     <p>
       <% if session[:user_id] && @tag.blank? %>
         <a class="btn btn-primary" href="<%= new_mod_path %>">Publish New Mod</a>
@@ -22,7 +22,7 @@
   <%= render partial: "mod", collection: @mods %>
 </div>
 
-<%== @pagy.series_nav(:bootstrap) %>
+<%== @pagy.series_nav(:bootstrap) if @pagy.pages > 1 %>
 
 <% if @tag.present? %>
   <p>

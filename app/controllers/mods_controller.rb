@@ -61,7 +61,7 @@ class ModsController < ApplicationController
 
   private
 
-  def viewable_mods = Mod.where(unlisted: false).or(current_user.mods)
+  def viewable_mods = Mod.where(unlisted: false).or(current_user ? current_user.mods : Mod.none)
 
   def mod_params = params.require(:mod).permit(:title,
                                                :description,
