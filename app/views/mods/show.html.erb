@@ -38,7 +38,7 @@
     </p>
 
     <p><strong>Author:</strong>
-      <bx-link href="<%= user_path(@mod.user) %>"><%= @mod.user.username %></bx-link>
+      <a href="<%= user_path(@mod.user) %>"><%= @mod.user.username %></a>
     </p>
 
     <p><strong>Published:</strong> <%= localize(@mod.created_at, format: :long) %></p>
