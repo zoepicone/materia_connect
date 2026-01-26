@@ -1,41 +1,36 @@
 <%= form_with model: @mod do |f| %>
   <% if @mod.errors.any? %>
-    <div id="error_explanation">
-      <bx-inline-notification title="<%= pluralize(@mod.errors.count, "error") %> prohibited this mod from being saved:"
-                              subtitle="
-                                <% @mod.errors.full_messages.each do |message| %>
-                                          <%= message %>&#10;
-                                        <% end %>"
-                              kind="error">
-      </bx-inline-notification>
+    <div id="error_explanation" class="alert alert-warning" role="alert">
+      <h4 class="alert-heading"><%= pluralize(@mod.errors.count, "Error") %> prohibited this mod from being saved</h4>
+      <% @mod.errors.full_messages.each do |message| %>
+        <%= message %>&#10;
+      <% end %>
     </div>
   <% end %>
 
   <%= f.hidden_field :user_id, value: current_user.id %>
 
-  <bx-form-item id="in-form">
-    <bx-input name="mod[title]" value="<%= @mod.title %>">
-      <span slot="label-text">Title</span>
-      <span slot="helper-text">Must be shorter than or equal to 48 characters long.</span>
-      <span slot="validity-message">Something isn't right!</span>
-    </bx-input>
-  </bx-form-item>
+  <div id="in-form" class="mb-2">
+    <%= f.label :title, class: "form-label" %>
+    <%= f.text_field :title, class: "form-control" %>
+    <div class="form-text">Must be shorter than or equal to 48 characters long.</div>
+  </div>
 
   <div class="flex-container" id="in-form">
     <div>
-      <bx-form-item>
-        <bx-textarea name="mod[description]" value="<%= @mod.description %>" rows="4">
-          <span slot="label-text">Description</span>
-          <span slot="helper-text">Uses Markdown. Must be shorter than or equal to 2048 characters long.</span>
-          <span slot="validity-message">Something isn't right!</span>
-        </bx-textarea>
-      </bx-form-item>
+      <%= f.label :description, class: "form-label" %>
+      <%= f.text_area :description, size: "70x4", class: "form-control" %>
+      <div class="form-text">This description can be written using
+        <a href="https://www.markdownguide.org/cheat-sheet/" target="_blank" rel="noopener noreferrer">Markdown</a>.
+        Must be shorter than or equal to 2048 characters long.
+      </div>
     </div>
 
-    <div data-controller="multi-upload">
+    <div data-controller="multi-upload" class="mb-2">
       <div class="images">
-        <%= f.label :images %>
-        <%= f.file_field :images, multiple: true, data: { action: "multi-upload#addFile" } %>
+        <%= f.label :images, class: "form-label" %>
+        <br>
+        <%= f.file_field :images, class: "form-control", multiple: true, data: { action: "multi-upload#addFile" } %>
       </div>
 
       <div data-multi-upload-target="files"></div>
@@ -58,44 +53,49 @@
     <!--    </div>-->
   </div>
 
-  <bx-form-item id="in-form">
-    <bx-input name="mod[tag_string]" value="<%= @mod.tag_string.present? ? @mod.tag_string : @mod.tags.join(', ') %>">
-      <span slot="label-text">Tags</span>
-      <span slot="helper-text">Separate tags by commas, eg; "bibo+, female, clothing".</span>
-      <span slot="validity-message">Something isn't right!</span>
-    </bx-input>
-  </bx-form-item>
-
-  <bx-form-item id="in-form">
-    <bx-input name="mod[download_url]" value="<%= @mod.download_url %>" type="url" pattern="https?://.+">
-      <span slot="label-text">Download URL</span>
-      <span slot="helper-text">Must be a valid URL.</span>
-      <span slot="validity-message">Something isn't right!</span>
-    </bx-input>
-  </bx-form-item>
-
-
-  <div class="flex-container" id="in-form">
-    <bx-form-item>
-      <bx-checkbox name="mod[nsfw]" value="<%= @mod.nsfw.present? ? @mod.nsfw : true %>" label-text="NSFW"></bx-checkbox>
-    </bx-form-item>
-    <bx-form-item>
-      <bx-checkbox name="mod[premium]" value="<%= @mod.premium.present? ? @mod.premium : true %>" label-text="Paid Content"></bx-checkbox>
-    </bx-form-item>
-    <bx-form-item>
-      <bx-checkbox name="mod[unlisted]" value="<%= @mod.unlisted.present? ? @mod.unlisted : true %>" label-text="Unlisted"></bx-checkbox>
-    </bx-form-item>
+  <div id="in-form" class="mb-2">
+    <%= f.label :tag_string, "Tags", class: "form-label" %>
+    <%= f.text_field :tag_string, class: "form-control" %>
+    <div class="form-text">Separate tags by commas, eg: <i>"bibo+, female, clothing"</i>.</div>
   </div>
 
-  <bx-form-item>
-    <div>
-      <%= f.submit 'Publish', type: 'submit', class: 'confirm-btn primary' %>
-      <% if edit == true %>
-        <bx-btn type="destroy" kind="danger" id="delete-mod" data-confirm="Are you sure?">Delete</bx-btn>
-      <% end %>
-      <bx-btn type="back" kind="ghost" href="javascript:history.back()">Back</bx-btn>
-    </div>
-  </bx-form-item>
+<!--    <bx-input name="mod[tag_string]" value="<%#= @mod.tag_string.present? ? @mod.tag_string : @mod.tags.join(', ') %>">-->
+<!--      <span slot="label-text">Tags</span>-->
+<!--      <span slot="helper-text">Separate tags by commas, eg; "bibo+, female, clothing".</span>-->
+<!--      <span slot="validity-message">Something isn't right!</span>-->
+<!--    </bx-input>-->
+
+  <div id="in-form" class="mb-2">
+    <%= f.label :download_url, "Download URL", class: "form-label" %>
+    <%= f.url_field :download_url, class: "form-control" %>
+    <div class="form-text">Must be a valid URL.</div>
+  </div>
+
+<!--    <bx-input name="mod[download_url]" value="<%#= @mod.download_url %>" type="url" pattern="https?://.+">-->
+<!--      <span slot="label-text">Download URL</span>-->
+<!--      <span slot="helper-text">Must be a valid URL.</span>-->
+<!--      <span slot="validity-message">Something isn't right!</span>-->
+<!--    </bx-input>-->
+
+
+  <div class="flex-container mb-2" id="in-form">
+    <%= f.check_box :nsfw, class: "form-check-input" %>
+    <%= f.label :nsfw, "NSFW", class: "form-check-label" %>
+
+    <%= f.check_box :premium, class: "form-check-input" %>
+    <%= f.label :premium, "Paid Content", class: "form-label" %>
+
+    <%= f.check_box :unlisted, class: "form-check-input" %>
+    <%= f.label :unlisted, class: "form-label" %>
+  </div>
+
+  <div>
+    <%= f.submit 'Publish', type: 'submit', class: 'btn btn-primary' %>
+    <% if edit == true %>
+      <%= f.button "Delete", class: "btn btn-danger", formmethod: :delete, data: { confirm: "Are you sure?" } %>
+    <% end %>
+    <a class="btn btn-outline-primary" href="javascript:history.back()">Back</a>
+  </div>
 <% end %>
 
 <%= render "confirm_modal" if edit == true %>
