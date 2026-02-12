@@ -1,4 +1,4 @@
-<div class="flex-container">
+<div class="flex-container justify-content-between">
   <div class="flex-item">
     <h1>
       <% if @tag.present? %>
@@ -9,21 +9,23 @@
     </h1>
   </div>
 
-  <div class="flex-item">
+  <div class="flex-item mt-2">
     <p>
-      <% if session[:user_id] %>
-        <bx-btn href="<%= new_mod_path %>">Publish New Mod</bx-btn>
+      <% if session[:user_id] && @tag.blank? %>
+        <a class="btn btn-primary" href="<%= new_mod_path %>">Publish New Mod</a>
       <% end %>
     </p>
   </div>
 </div>
 
-<div id="mods" data-no-turbolink>
+<div id="mods" class="grid" data-controller="mod-list" data-no-turbolink>
   <%= render partial: "mod", collection: @mods %>
 </div>
 
+<%== @pagy.series_nav(:bootstrap) if @pagy.pages > 1 %>
+
 <% if @tag.present? %>
   <p>
-    <bx-link href="javascript:history.back()">Back</bx-link>
+    <a class="btn btn-primary" href="javascript:history.back()">Back</a>
   </p>
 <% end %>

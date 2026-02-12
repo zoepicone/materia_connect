@@ -14,11 +14,11 @@
     <%= render 'dashboard/header' %>
 
     <% flash.each do |type, msg| %>
-      <bx-inline-notification kind="<%= (type == "notice") ? "info" : "error" %>"
-                              title="<%= type.titleize %>:"
-                              subtitle="<%= msg %>"
-                              timeout="5000">
-      </bx-inline-notification>
+      <div class="alert alert-dismissible fade show <%= (type == "notice") ? "alert-secondary" : "alert-danger" %>" role="alert">
+        <h4 class="alert-heading"><%= type.titleize %></h4>
+        <%= msg %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
     <% end %>
 
     <%= yield %>

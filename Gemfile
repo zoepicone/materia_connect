@@ -1,10 +1,13 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.1.2'
+ruby '4.0.0'
+
+# dotenv at top of load order
+gem 'dotenv', groups: [:development, :test]
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem 'rails', '~> 7.0.4'
+gem 'rails', '~> 7.2'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'
@@ -16,7 +19,7 @@ gem 'pg'
 gem 'pg_search'
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem 'puma', '~> 5.0'
+gem 'puma', '~> 6.0'
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem 'importmap-rails'
@@ -52,7 +55,8 @@ gem 'bootsnap', require: false
 gem 'sassc-rails'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.12'
+gem 'active_storage_validations'
 
 # Use OmniAuth for authentication
 gem 'omniauth'
@@ -66,7 +70,13 @@ gem 'rename'
 gem 'faker'
 
 # Use Pagy for pagination
-gem 'pagy'
+gem 'pagy', '~> 43.0'
+
+# Use Redcarpet for Markdown rendering
+gem 'redcarpet'
+
+# The web components dream was for naught. Bootstrap has returned.
+gem 'bootstrap', '~> 5.1.3'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -86,6 +96,8 @@ group :development do
   # Use rubocop to lint your code
   gem 'rubocop', require: false
 
+  gem 'readline-ext'
+
   # Add pry for debugging
   gem 'pry'
   gem 'pry-byebug'
@@ -95,5 +107,4 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
   gem 'selenium-webdriver'
-  gem 'webdrivers'
 end

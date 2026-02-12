@@ -1,8 +1,12 @@
-<bx-clickable-tile href="<%= mod_path(mod) %>">
+<div class="grid-item card" style="width: 18rem">
   <% if mod.images.attached? %>
-    <%= image_tag mod.images.first %>
-  <% else %>
-    <%= image_tag("placeholder.png", height: '64') %>
+    <a href="<%= mod_path(mod) %>">
+      <%= image_tag mod.images.first.variant(resize_to_fill: [200, 120]),
+                    class: "card-img-top", alt: "Thumbnail image: #{mod.title}" %>
+    </a>
   <% end %>
-  <h3><%= mod.title %></h3>
-</bx-clickable-tile>
+  <div class="card-body">
+    <h5 class="card-title"><a href="<%= mod_path(mod) %>"><%= mod.title %></a></h5>
+    <p class="card-text"><%= stripdown(mod.truncated_description) %></p>
+  </div>
+</div>

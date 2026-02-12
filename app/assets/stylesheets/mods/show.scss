@@ -1,31 +1,9 @@
-.swiper-slide {
-  max-height: 300px;
-  display: inline-flex;
-}
-
-img {
-  object-fit: contain;
-}
-
-.pink {
-  background-color: lightpink;
-}
-
-.green {
-  background-color: lightgreen;
-}
-
-.blue {
-  background-color: lightblue;
-}
-
 #view-mod {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
-
 }
 
 #view-mod-left {
@@ -33,9 +11,13 @@ img {
 }
 
 #view-mod-right {
-  padding-top: 14px;
+  padding-top: 0.5em;
   display: inline-flex;
   flex-direction: column;
   align-items: flex-end;
   gap: 8px;
+}
+
+#mod-carousel {
+  max-width: 896px;
 }

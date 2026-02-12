@@ -5,19 +5,16 @@
 <% end %>
 
 <%= form_with url: search_path, method: :get do %>
-  <div class="flex-container" id="search-horiz">
-
-    <div class="flex-child" id=search-horiz-left>
-      <bx-search name="query" label-text="Search for a mod..." value="<%= @query.present? ? @query : '' %>" type="text"></bx-search>
-    </div>
-    <div class="flex-child" id=search-horiz-right>
-      <%= submit_tag 'Search', type: 'submit', class: 'confirm-btn primary', name: nil %>
+  <div class="input-group mb-3">
+    <%= search_field_tag 'query', @query.present? ? @query : '', placeholder: 'Search for a mod...', class: 'form-control' %>
+    <div class="input-group-append">
+      <%= submit_tag 'Search', type: 'submit', class: 'btn btn-outline-primary', name: nil %>
     </div>
 
   </div>
 <% end %>
 
-<div id="mods">
+<div id="mods" class="grid" data-controller="mod-list" data-no-turbolink>
   <% if @mods.present? %>
     <% @mods.each do |mod| %>
       <%= render partial: "mods/mod", locals: { mod: mod, id: mod.id } %>

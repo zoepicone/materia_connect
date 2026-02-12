@@ -1,15 +1,46 @@
-<bx-header aria-label="<%= t("product_name") %>">
-  <bx-header-name href="<%= root_path %>"><%= t("product_name") %></bx-header-name>
-  <bx-header-nav menu-bar-label="<%= t("product_name") %>">
-    <bx-header-nav-item href="<%= mods_path %>">View Mods</bx-header-nav-item>
-    <bx-header-nav-item href="/search">Search Mods</bx-header-nav-item>
-  </bx-header-nav>
-  <bx-header-nav menu-bar-label="Account">
-    <% if current_user %>
-      <bx-header-nav-item href="<%= user_path(current_user) %>">My Profile</bx-header-nav-item>
-      <bx-header-nav-item href="<%= logout_path %>">Sign Out</bx-header-nav-item>
-    <% else %>
-      <bx-header-nav-item href="<%= login_path %>">Sign In</bx-header-nav-item>
-    <% end %>
-  </bx-header-nav>
-</bx-header>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark py-1">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="<%= root_url %>"><%= t('product_name') %></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse d-flex" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link <%= 'active' if controller_action_name == 'mods#index' %>"
+             href="<%= mods_url %>">View Mods</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link <%= 'active' if controller_action_name == 'mods#search' %>"
+             href="<%= search_url %>">Search Mods</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#"><%= controller_action_name %></a>
+        </li>
+      </ul>
+
+      <form class="d-flex navbar-form" action="<%= search_url %>" method="get">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="query">
+        <button class="btn btn-outline-success py-0" type="submit">Search</button>
+      </form>
+
+      <ul class="navbar-nav">
+
+        <% if current_user %>
+          <li class="nav-item">
+            <a class="nav-link <%= 'active' if controller_action_name == 'users#show' %>"
+               href="<%= user_url(current_user) %>">My Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= logout_url %>">Sign Out</a>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <a class="nav-link <%= 'active' if controller_action_name == 'sessions#new' %>"
+               href="<%= login_url %>">Sign In</a>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>

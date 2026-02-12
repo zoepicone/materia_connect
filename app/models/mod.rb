@@ -12,15 +12,19 @@ class Mod < ApplicationRecord
 
   self.implicit_order_column = 'created_at'
 
+  belongs_to :user
+
   # must have at least one image
-  has_many_attached :images
+  has_many_attached :images do |attachable|
+    attachable.variant :thumb, resize: '300x300^', gravity: 'center', extent: '300x300'
+    attachable.variant :large, resize: '800x800^', gravity: 'center', extent: '800x800'
+  end
 
   validates :title, presence: true, uniqueness: true, length: { maximum: 48 }
   validates :description, presence: true, length: { maximum: 2048 }
   validates :download_url, presence: true, http_url: true, length: { maximum: 256 }
   validates :user_id, presence: true
-
-  belongs_to :user
+  validates :images, attached: true, content_type: %i[png jpg jpeg]
 
   attr_accessor :tag_string
 
@@ -35,6 +39,13 @@ class Mod < ApplicationRecord
     %i[nsfw unlisted premium].each do |param|
       self[param] = false unless self[param]
     end
+  end
+
+  def truncated_description
+    return unless description.present? && description.is_a?(String)
+    return description if description.length <= 72
+
+    "#{description.slice(0, 48).strip}..."
   end
 
   def creator = user.username

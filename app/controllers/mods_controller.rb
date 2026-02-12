@@ -3,7 +3,7 @@ class ModsController < ApplicationController
   before_action :verify_user_owns_mod, only: %i[edit update destroy]
 
   def index
-    @mods = public_mods.order(created_at: :desc)
+    @pagy, @mods = pagy(:countish, viewable_mods.order(created_at: :desc), ttl: 300, limit: 25)
   end
 
   def show
@@ -45,23 +45,28 @@ class ModsController < ApplicationController
     @mod = Mod.find(params[:id])
     @mod.destroy
 
-    redirect_to mods_path, status: :see_other
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
+    flash[:notice] = t('mod_deleted')
+    redirect_to mods_path
   end
 
   def search
     @query = params[:query]
-    @mods = Mod.search(@query)&.where(unlisted: false)
+    @mods = Mod.search(@query)&.where(unlisted: false)&.or(current_user.mods)
   end
 
   def with_tag
     @tag = params[:tag]
-    @mods = tagged_with(@tag).order(created_at: :desc)
+    @pagy, @mods = pagy(:offset, tagged_with(@tag).order(created_at: :desc))
     render :index
   end
 
   private
 
-  def public_mods = Mod.where(unlisted: false)
+  def viewable_mods = Mod.where(unlisted: false).or(current_user ? current_user.mods : Mod.none)
 
   def mod_params = params.require(:mod).permit(:title,
                                                :description,
@@ -73,7 +78,7 @@ class ModsController < ApplicationController
                                                :premium,
                                                images: [])
 
-  def tagged_with(tag) = public_mods.where("'{#{tag}}' <@ tags")
+  def tagged_with(tag) = viewable_mods.where("'{#{tag}}' <@ tags")
 
   def verify_user_owns_mod
     return if Mod.find(params[:id]).user == current_user

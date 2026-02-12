@@ -6,44 +6,33 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-user1 = User.create!(name: 'John Doe',
-                     email: 'john@example.com',
-                     username: 'john_doe',
-                     provider: 'developer',
-                     uid: '1234567890')
+user1 = User.create(name: 'John Doe',
+                    email: 'john@example.com',
+                    username: 'john_doe',
+                    provider: 'developer',
+                    uid: '1234567890')
 
 50.times do
-  User.create!(name: Faker::Name.name,
-               email: Faker::Internet.email,
-               username: Faker::Internet.unique.username,
-               provider: 'developer',
-               uid: Faker::Number.unique.number(digits: 10))
+  User.create(name: Faker::Name.name,
+              email: Faker::Internet.email,
+              username: Faker::Internet.unique.username,
+              provider: 'developer',
+              uid: Faker::Number.unique.number(digits: 10))
 end
-
-mod1 = Mod.create!(title: 'Mod 1',
-                   description: 'This is the first mod.',
-                   tags: %w[tag1 tag2],
-                   download_url: 'https://youtube.com/watch?v=dQw4w9WgXcQ',
-                   user_id: User.first.id)
-
-mod2 = Mod.create!(title: 'Mod 2',
-                   description: 'This is the second mod.',
-                   tags: %w[tag1 tag3],
-                   download_url: 'https://youtube.com/watch?v=dQw4w9WgXcQ',
-                   user_id: User.first.id)
 
 50.times do
   title = Faker::Book.unique.title
   title = Faker::Book.unique.title while title.length > 48
-  m = Mod.create!(title:,
-                  description: Faker::Lorem.paragraph,
-                  tags: Faker::Lorem.words(number: 10),
-                  download_url: 'https://youtube.com/watch?v=dQw4w9WgXcQ',
-                  user_id: User.order(Arel.sql('RANDOM()')).first.id,
-                  nsfw: [true, false].sample,
-                  unlisted: [true, false].sample,
-                  premium: [true, false].sample)
+  m = Mod.new(title:,
+              description: Faker::Markdown.sandwich(sentences: 5),
+              tags: Faker::Lorem.words(number: 10),
+              download_url: 'https://youtube.com/watch?v=dQw4w9WgXcQ',
+              user_id: User.order(Arel.sql('RANDOM()')).first.id,
+              nsfw: [true, false].sample,
+              unlisted: [true, false].sample,
+              premium: [true, false].sample)
   m.images.attach(io: File.open('app/assets/images/placeholder.png'),
                   filename: 'placeholder.png',
                   content_type: 'image/png')
+  m.save
 end
