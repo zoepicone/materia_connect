@@ -45,7 +45,12 @@ class ModsController < ApplicationController
     @mod = Mod.find(params[:id])
     @mod.destroy
 
-    redirect_to mods_path, status: :see_other
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
+    flash[:notice] = t('mod_deleted')
+    redirect_to mods_path
   end
 
   def search

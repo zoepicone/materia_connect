@@ -34,3 +34,4 @@ en:
   hello: "Hello world"
   login_required: "You must be logged in to access this page."
   mod_permission_denied: "You do not have permission to view this mod."
+  mod_deleted: "This mod has been successfully deleted."
