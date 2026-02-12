@@ -6,25 +6,25 @@
       <div id="mod-carousel" class="carousel slide mb-3" data-ride="carousel">
         <ol class="carousel-indicators">
           <% @mod.images.each_with_index do |image, index| %>
-            <li data-target="#mod-carousel" data-slide-to="<%= index %>" class="<%= 'active' if index == 0 %>"></li>
+            <button type="button" data-bs-target="#mod-carousel" data-bs-slide-to="<%= index %>" class="<%= 'active' if index == 0 %>"></button>
           <% end %>
         </ol>
         <div class="carousel-inner">
           <% @mod.images.each_with_index do |image, index| %>
             <div class="carousel-item <%= 'active' if index == 0 %>">
-              <%= image_tag image.variant(resize_to_fit: [600, nil]) %>
+              <%= image_tag image.variant(resize_to_fill: [896, 504]), class: "d-block" %>
             </div>
           <% end %>
         </div>
         <% if @mod.images.count > 1 %>
-          <a class="carousel-control-prev" href="#mod-carousel" role="button" data-slide="prev">
+          <button class="carousel-control-prev" type="button" data-bs-target="#mod-carousel" role="button" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#mod-carousel" role="button" data-slide="next">
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#mod-carousel" role="button" data-bs-slide="next">
             <span class="sr-only">Next</span>
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          </a>
+          </button>
         <% end %>
       </div>
     <% end %>
@@ -45,7 +45,7 @@
 
     <p><strong>Last Updated:</strong> <%= localize(@mod.updated_at, format: :long) %></p>
 
-    <p><%= @mod.description %></p>
+    <p><%= markdown(@mod.description) %></p>
 
     <p>
       <a href="javascript:history.back()" class="btn btn-primary">Back</a>

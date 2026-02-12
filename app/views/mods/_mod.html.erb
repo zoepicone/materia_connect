@@ -1,11 +1,12 @@
 <div class="grid-item card" style="width: 18rem">
   <% if mod.images.attached? %>
     <a href="<%= mod_path(mod) %>">
-      <%= image_tag mod.images.first, class: "card-img-top", alt: "Thumbnail image: #{mod.title}" %>
+      <%= image_tag mod.images.first.variant(resize_to_fill: [200, 120]),
+                    class: "card-img-top", alt: "Thumbnail image: #{mod.title}" %>
     </a>
   <% end %>
   <div class="card-body">
     <h5 class="card-title"><a href="<%= mod_path(mod) %>"><%= mod.title %></a></h5>
-    <p class="card-text"><%= mod.truncated_description %></p>
+    <p class="card-text"><%= stripdown(mod.truncated_description) %></p>
   </div>
 </div>

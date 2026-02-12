@@ -1,9 +1,9 @@
 <%= form_with model: @mod do |f| %>
   <% if @mod.errors.any? %>
     <div id="error_explanation" class="alert alert-warning" role="alert">
-      <h4 class="alert-heading"><%= pluralize(@mod.errors.count, "Error") %> prohibited this mod from being saved</h4>
+      <h4 class="alert-heading"><%= pluralize(@mod.errors.count, "error") %> prohibited this mod from being saved:</h4>
       <% @mod.errors.full_messages.each do |message| %>
-        <%= message %>&#10;
+        <%= message %><br>
       <% end %>
     </div>
   <% end %>
@@ -30,7 +30,7 @@
       <div class="images">
         <%= f.label :images, class: "form-label" %>
         <br>
-        <%= f.file_field :images, class: "form-control", multiple: true, data: { action: "multi-upload#addFile" } %>
+        <%= f.file_field :images, class: "form-control", direct_upload: true, multiple: true %> <!--data: { action: "multi-upload#addFile" } %>-->
       </div>
 
       <div data-multi-upload-target="files"></div>
@@ -92,7 +92,7 @@
   <div>
     <%= f.submit 'Publish', type: 'submit', class: 'btn btn-primary' %>
     <% if edit == true %>
-      <%= f.button "Delete", class: "btn btn-danger", formmethod: :delete, data: { confirm: "Are you sure?" } %>
+      <%= button_tag "Delete", type: "button", class: "btn btn-danger", data: { bs_toggle: "modal", bs_target: "#confirmModal" } %> <!--formmethod: :delete, -->
     <% end %>
     <a class="btn btn-outline-primary" href="javascript:history.back()">Back</a>
   </div>

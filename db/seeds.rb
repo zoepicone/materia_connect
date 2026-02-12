@@ -24,7 +24,7 @@ end
   title = Faker::Book.unique.title
   title = Faker::Book.unique.title while title.length > 48
   m = Mod.new(title:,
-              description: Faker::Lorem.paragraph,
+              description: Faker::Markdown.sandwich(sentences: 5),
               tags: Faker::Lorem.words(number: 10),
               download_url: 'https://youtube.com/watch?v=dQw4w9WgXcQ',
               user_id: User.order(Arel.sql('RANDOM()')).first.id,

@@ -1,3 +1,5 @@
+require 'redcarpet/render_strip'
+
 module ApplicationHelper
   def controller_action_name = "#{controller_name}##{action_name}"
 
@@ -19,6 +21,11 @@ module ApplicationHelper
     }
 
     markdown = Redcarpet::Markdown.new(Redcarpet::Render::XHTML.new(options), extensions)
+    markdown.render(text).html_safe
+  end
+
+  def stripdown(text)
+    markdown = Redcarpet::Markdown.new(Redcarpet::Render::StripDown)
     markdown.render(text).html_safe
   end
 end
